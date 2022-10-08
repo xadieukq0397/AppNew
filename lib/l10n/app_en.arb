@@ -1,0 +1,151 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The current Language"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Title Login"
+  },
+  "welcome": "Welcome Back {username}",
+  "@welcome": {
+    "description": "WelCome to App",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "username_or_gmail": "Username or Gmail",
+  "@username_or_gmail": {
+    "description": "Text field username or gmail"
+  },
+  "password": "PassWord",
+  "@password": {
+    "description": "Text field password"
+  },
+  "decriptionLogin": "Creating an account means you're okay with our Terms of Services and our Privacy Policy",
+  "@decriptionLogin": {
+    "description": "decription login"
+  },
+  "noAcount": "Don't have an account?",
+  "@noAcount": {
+    "description": "no account?"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Go to Sign up page"
+  },
+  "titleSignup": "Create account",
+  "@titleSignup": {
+    "description": "Title Sign up"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Text field username"
+  },
+  "gmail": "Gmail",
+  "@gmail": {
+    "description": "Text field Gmail"
+  },
+  "decriptionSignUp": "Creating an account means you're okay with our Terms of Services and our Privacy Policy",
+  "@decriptionSignUp": {
+    "description": "Decription SignUp"
+  },
+  "haveAcount": "Already have an account?",
+  "@haveAcount": {
+    "description": "Don't have no acount"
+  },
+  "blankUserName": "Please enter username",
+  "@blankUserName": {
+    "description": "validate username"
+  },
+  "blankGmail": "Please enter gmail",
+  "@blankGmail": {
+    "description": "Please type your gmail"
+  },
+  "validateGmail": "Please enter valid gmail",
+  "@validateGmail": {
+    "description": "Your gmail must have @gmail.com"
+  },
+  "blankPass": "Please enter your password",
+  "@blankPass": {
+    "description": "Type password"
+  },
+  "validMinCharacter": "Password at least enter 6 characters",
+  "@validMinCharacter": {
+    "description": "Password signup at least 6 characters"
+  },
+  "validMaxCharacter": "Password maximum character is 13",
+  "@validMaxCharacter": {
+    "description": "Password maximum character is 13"
+  },
+  "searchProvince": "Search Your Province",
+  "@searchProvince": {
+    "description": "Search your provice"
+  },
+  "searchDistrict": "Search Your District",
+  "@searchDistrict": {
+    "description": "Search your District"
+  },
+  "searchWard": "Search Your Ward",
+  "@searchWard": {
+    "description": "Search your Ward"
+  },
+  "searchNotFound": "Not Found",
+  "@searchNotFound": {
+    "description": "Not found"
+  },
+  "notSelectProvinceOne": "You have not selected a Province",
+  "@notProvinceOne": {
+    "description": "Not selected Province"
+  },
+  "notSelectProvinceTwo": "Please select a Province",
+  "@notProvinceTwo": {
+    "description": "Please choose province"
+  },
+  "notSelectDistrictOne": "You have not selected a District",
+  "@notDistrictOne": {
+    "description": "Not selected District"
+  },
+  "notSelectDistrictTwo": "Please select a District",
+  "@notDistrictTwo": {
+    "description": "Please choose District"
+  },
+  "notSelectWardOne": "You have not selected a Ward",
+  "@notSelectWardOne": {
+    "description": "Not selected Ward"
+  },
+  "notSelectWardTwo": "Please select a Ward",
+  "@notSelectWardTwo": {
+    "description": "Please choose Ward"
+  },
+  "errSelectProvinceOne": "You have chosen the wrong Province",
+  "@errProvinceOne": {
+    "description": "Error choose province"
+  },
+  "errSelectProvinceTwo": "Please choose the correct Province",
+  "@errProvinceTwo": {
+    "description": "Choose correct Province"
+  },
+  "errSelectDistrictOne": "You have chosen the wrong District",
+  "@errDistrictOne": {
+    "description": "Error choose District"
+  },
+  "errSelectDistrictTwo": "Please choose the correct District",
+  "@errDistrictTwo": {
+    "description": "Choose correct District"
+  },
+  "errSelectWardOne": "You have chosen the wrong Ward",
+  "@errSelectWardOne": {
+    "description": "Error choose Ward"
+  },
+  "errSelectWardTwo": "Please choose the correct Ward",
+  "@errWardTwo": {
+    "description": "Choose correct Ward"
+  },
+  "agreeButton" : "Agree",
+  "@agreeButton": {
+    "description": "Button press Agree"
+  }
+}
