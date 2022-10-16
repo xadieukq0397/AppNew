@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:responsive_login_ui/controller/cart_controller.dart';
-import 'package:responsive_login_ui/controller/order_controller.dart';
-import '../controller/product_controller.dart';
 
 class DetailView extends StatelessWidget {
-  const DetailView({Key? key}) : super(key: key);
+  const DetailView({Key? key, required this.productId}) : super(key: key);
+  final String? productId;
 
   @override
   Widget build(BuildContext context) {
@@ -75,16 +72,7 @@ class DetailView extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {
-                    // Get.find<ProductController>().createProductToDB();
-                    // Get.find<ProductController>().readAllProductFromDB();
-                    // Get.find<AuthController>().createUserToDB();
-                    // Get.find<AuthController>().readAllUserFromDB();
-                    // Get.find<CartController>().createCartToDB();
-                    // Get.find<CartController>().readAllCartByOrderIdFromDB('1');
-                    // Get.find<OrderController>().createOrderToDB();
-                    // Get.find<OrderController>().readAllOrderByUserIdFromDB('2');
-                  },
+                  onTap: () {},
                   child: Container(
                     padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(

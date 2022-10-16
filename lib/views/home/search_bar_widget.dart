@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_login_ui/constants.dart';
 
 class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
-  final bool isReadOnly;
-  SearchBarWidget({Key? key, required this.isReadOnly})
+  SearchBarWidget({Key? key})
       : preferredSize = const Size.fromHeight(kAppBarHeight),
         super(key: key);
 
@@ -20,37 +19,15 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     Size screenSize =
         MediaQueryData.fromWindow(WidgetsBinding.instance.window).size;
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: backgroundGradient,
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight),
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 47,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: screenSize.width * 0.7,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Search your something",
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: border,
-                      focusedBorder: border,
-                    ),
-                  ),
-                )
-              ],
-            )
-          ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 40, left: 18, right: 18),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Search your something",
+          fillColor: Colors.white,
+          filled: true,
+          border: border,
+          focusedBorder: border,
         ),
       ),
     );

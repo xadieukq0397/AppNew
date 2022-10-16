@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/address_controller.dart';
 import '../constants.dart';
 import '../controller/auth_controller.dart';
+import '../controller/product_controller.dart';
 import '../controller/simple_ui_controller.dart';
 import '../routes/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -265,8 +268,9 @@ class _LoginViewState extends State<LoginView> {
           //   print("After encode: " + passwordEncode);
           //   print("After encode: " + userNameEnCode);
 
-          Get.offNamed(Routes.country);
+          Get.offNamed(Routes.gethomePage());
           Get.find<AddressController>().createProvincesToDB();
+          Get.find<ProductController>().readAllProductFromDB();
         },
         // },
         // },
