@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/address_controller.dart';
 import '../constants.dart';
-import '../controller/login_controller.dart';
+import '../controller/auth_controller.dart';
 import '../controller/simple_ui_controller.dart';
 import '../routes/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,7 +15,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginController loginController = Get.find<LoginController>();
+  AuthController loginController = Get.find<AuthController>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -267,8 +267,8 @@ class _LoginViewState extends State<LoginView> {
 
           Get.offNamed(Routes.country);
           Get.find<AddressController>().createProvincesToDB();
-          // }
         },
+        // },
         // },
         child: Text(AppLocalizations.of(context)!.login),
       ),

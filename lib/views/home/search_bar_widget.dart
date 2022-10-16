@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:responsive_login_ui/constants.dart';
 
 class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
@@ -29,29 +27,31 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight),
       ),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 47,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                width: screenSize.width * 0.7,
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Search your something",
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: border,
-                    focusedBorder: border,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 47,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: screenSize.width * 0.7,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: "Search your something",
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: border,
+                      focusedBorder: border,
+                    ),
                   ),
-                ),
-              )
-            ],
-          )
-        ],
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
