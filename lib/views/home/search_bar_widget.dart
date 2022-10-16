@@ -31,8 +31,8 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
       ),
       child: Column(
         children: [
-          const SizedBox(
-            height: 47,
+          SizedBox(
+            height: screenSize.height * 0.06,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:responsive_login_ui/data/provider/db/product_database.dart';
 import 'package:responsive_login_ui/views/home/search_bar_widget.dart';
+import 'package:sqflite/sqflite.dart';
 import '../../constants.dart';
 
 class HomeView extends StatefulWidget {
@@ -12,6 +14,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  ProductDataBase productDataBase = new ProductDataBase();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -71,7 +74,7 @@ class _HomeViewState extends State<HomeView> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      lPriceProduct[index],
+                                      lPriceProduct[index].toString(),
                                       style: TextStyle(
                                           fontSize:
                                               kProductStyle(size).fontSize,

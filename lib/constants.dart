@@ -43,13 +43,7 @@ const List<String> lNameProduct = [
   "[Galaxy S22 Ultra] Điện thoại Samsung Galaxy S22 Ultra - Hàng chính hãng",
   "[Galaxy Buds 2 Pro ] Tai nghe Samsung Galaxy Buds 2 Pro - Hàng chính hãng"
 ];
-const List<String> lPriceProduct = [
-  "152.000",
-  "3.150.000",
-  "30.000.000",
-  "21.000.000",
-  "2.500.000"
-];
+const List<int> lPriceProduct = [152000, 3150000, 30000000, 21000000, 2500000];
 const List<String> lSaledProduct = ["125", "15", "25", "30", "10"];
 const String saledName = "Đã bán ";
 const Color yellowColor = Color(0xfffed813); //Yellow
