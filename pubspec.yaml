@@ -20,6 +20,7 @@ dependencies:
   flutter_typeahead: 
   sqflite: 
   intl:
+  flutter_swipe_action_cell :
 
   
   
