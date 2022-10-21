@@ -33,12 +33,10 @@ class CartController extends GetxController {
             backgroundColor: Colors.red,
             colorText: Colors.white,
           );
-          print(_carts);
           return false;
         } else {
           _carts![i].quantity += 1;
           await cartRepo.updateCartToDB(_carts![i]);
-          print(_carts);
           return true;
         }
       }
@@ -61,7 +59,6 @@ class CartController extends GetxController {
       await cartRepo.createCartToDB(carts: carts);
       print("Create cart to DB");
     }
-    print(_carts);
     update();
     return true;
   }
@@ -82,7 +79,6 @@ class CartController extends GetxController {
     if (_carts != null) {
       await getTotalPrice(_carts);
     }
-
     _isLoading = false;
     update();
   }

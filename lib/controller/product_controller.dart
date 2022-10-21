@@ -10,6 +10,9 @@ class ProductController extends GetxController {
   List<Product> _products = [];
   List<Product> get products => _products;
 
+  bool _isFilter = true;
+  bool get isFilter => _isFilter;
+
   ProductController({required this.productRepo});
 
   Future<void> createProductToDB() async {
@@ -112,10 +115,10 @@ class ProductController extends GetxController {
     _isLoading = true;
     List<Product>? listProducts = await productRepo.readAllProductFromDB();
     _products = [];
-
     for (var product in listProducts!) {
       _products.add(product);
     }
+    _isFilter = true;
     _isLoading = false;
     update();
   }
@@ -130,6 +133,7 @@ class ProductController extends GetxController {
               product.name!.toLowerCase().startsWith(value.toLowerCase()))
           .toList();
     }
+    _isFilter = false;
     _isLoading = false;
     update();
   }

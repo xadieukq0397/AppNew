@@ -17,29 +17,36 @@ class HomeView extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 40, left: 18, right: 18),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search your something",
-                fillColor: Colors.white,
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                    width: 1,
+            child: GetBuilder<ProductController>(
+              builder: (productController) => TextField(
+                decoration: InputDecoration(
+                  hintText: "Search your something",
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(7),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(7),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
                   ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
-                ),
+                onChanged: (value) async {
+                  if (productController.isFilter) {
+                    await Get.find<ProductController>().filterProduct(value);
+                  }
+                  if (value.isEmpty) {
+                    await productController.readAllProductFromDB();
+                  }
+                },
               ),
-              onChanged: (value) async {
-                await Get.find<ProductController>().filterProduct(value);
-              },
             ),
           ),
           const SizedBox(height: 20),
