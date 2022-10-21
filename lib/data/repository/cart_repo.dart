@@ -30,4 +30,12 @@ class CartRepo {
     carts = await StorageDatabase.instance.readAllCartByOrderIDFromDB(orderId);
     return carts;
   }
+
+  Future<void> updateCartToDB(Cart cart) async {
+    await StorageDatabase.instance.updateCartToDB(cart);
+  }
+
+  Future<void> deleteCartByIdFromDb(String id) async {
+    await StorageDatabase.instance.deleteCartByIdFromDb(id);
+  }
 }

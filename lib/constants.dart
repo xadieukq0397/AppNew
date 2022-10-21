@@ -30,7 +30,7 @@ TextStyle kProductStyle(Size size) => GoogleFonts.ubuntu(
       fontSize: size.height * 0.017,
     );
 
-const String saledName = "Đã bán ";
+const String saledName = "Hàng trong kho ";
 const Color yellowColor = Color(0xfffed813); //Yellow
 
 const Color activeCyanColor = Color(0xff0a7c97);

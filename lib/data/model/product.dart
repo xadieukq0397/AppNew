@@ -7,7 +7,8 @@ class ProductField {
     image,
     decription,
     price,
-    inventory
+    inventory,
+    weight
   ];
   static final String name = 'name';
   static final String image = 'image';
@@ -15,6 +16,7 @@ class ProductField {
   static final String price = 'price';
   static final String id = 'id';
   static final String inventory = 'inventory';
+  static final String weight = 'weight';
 }
 
 class Product {
@@ -22,8 +24,9 @@ class Product {
   final String? name;
   final String? image;
   final String? decription;
-  final num? price;
-  final int? inventory;
+  final int? price;
+  int? inventory;
+  final num? weight;
 
   Product({
     required this.id,
@@ -32,6 +35,7 @@ class Product {
     required this.decription,
     required this.price,
     required this.inventory,
+    required this.weight,
   });
   static Product fromJson(Map<String, dynamic> json) => Product(
         id: json['id'],
@@ -40,6 +44,7 @@ class Product {
         decription: json['decription'],
         price: json['price'],
         inventory: json['inventory'],
+        weight: json['weight'],
       );
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -48,5 +53,6 @@ class Product {
         'decription': decription,
         'price': price,
         'inventory': inventory,
+        'weight': weight,
       };
 }

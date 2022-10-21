@@ -5,7 +5,6 @@ import '../../model/district.dart';
 import '../../model/order.dart';
 import '../../model/product.dart';
 import '../../model/province.dart';
-import '../../model/user.dart';
 import '../../model/ward.dart';
 
 class StorageDatabase {
@@ -27,24 +26,28 @@ class StorageDatabase {
 
   Future _createDB(Database db, int version) async {
     final name = 'TEXT NOT NULL';
+    final productName = 'TEXT NOT NULL';
     final type = 'TEXT NOT NULL';
     final slug = 'TEXT NOT NULL';
     final path = 'TEXT NOT NULL';
     final id = 'TEXT PRIMARY KEY';
     final parent_id = 'TEXT NOT NULL';
-    final email = 'TEXT NOT NULL';
-    final phone = 'TEXT NOT NULL';
-    final address = 'TEXT NOT NULL';
     final userId = 'TEXT NOT NULL';
     final totalPrice = 'INTERGER NOT NULL';
     final time = 'TEXT NOT NULL';
     final image = 'TEXT NOT NULL';
     final decription = 'TEXT NOT NULL';
+    final unitPrice = 'INTERGER NOT NULL';
     final price = 'INTERGER NOT NULL';
     final inventory = 'INTERGER NOT NULL';
     final productId = 'TEXT NOT NULL';
     final orderId = 'TEXT NOT NULL';
     final quantity = 'INTERGER NOT NULL';
+    final weight = 'REAL NOT NULL';
+    final customerName = 'TEXT NOT NULL';
+    final phoneCustomer = 'TEXT NOT NULL';
+    final addressCustomer = 'TEXT NOT NULL';
+    final transportCode = 'INTERGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableProvinces(
@@ -78,22 +81,16 @@ CREATE TABLE $tableProduct(
   ${ProductField.image} $image,
   ${ProductField.decription} $decription,
   ${ProductField.price} $price,
-  ${ProductField.inventory} $inventory
-  )''');
-    await db.execute('''
-CREATE TABLE $tableUser(
-  ${UserField.id} $id,
-  ${UserField.name} $name,
-  ${UserField.email} $email,
-  ${UserField.image} $image,
-  ${UserField.phone} $phone,
-  ${UserField.address} $address
+  ${ProductField.inventory} $inventory,
+  ${ProductField.weight} $weight
   )''');
     await db.execute('''
 CREATE TABLE $tableCart(
   ${CartField.id} $id,
   ${CartField.orderId} $orderId,
   ${CartField.productId} $productId,
+  ${CartField.productName} $productName,
+  ${CartField.unitPrice} $unitPrice,
   ${CartField.quantity} $quantity
   )''');
     await db.execute('''
@@ -101,7 +98,11 @@ CREATE TABLE $tableOrder(
   ${OrderField.id} $id,
   ${OrderField.userId} $userId,
   ${OrderField.totalPrice} $totalPrice,
-  ${OrderField.time} $time
+  ${OrderField.time} $time,
+  ${OrderField.customerName} $customerName,
+  ${OrderField.phoneCustomer} $phoneCustomer,
+  ${OrderField.addressCustomer} $addressCustomer,
+  ${OrderField.transportCode} $transportCode
   )''');
   }
 
@@ -287,38 +288,6 @@ CREATE TABLE $tableOrder(
     }
   }
 
-  // User
-  Future<void> createUserToDB(User user) async {
-    final db = await instance.database;
-    final map = user.toJson();
-    await db.insert(tableUser, map);
-  }
-
-  Future<List<User>?> readAllUserFromDB() async {
-    final db = await instance.database;
-    final results = await db.query(tableUser);
-    if (results.isNotEmpty) {
-      return results.map((json) => User.fromJson(json)).toList();
-    } else {
-      return null;
-    }
-  }
-
-  Future<User?> readUserByIDFromDB(String? id) async {
-    final db = await instance.database;
-    final maps = await db.query(
-      tableUser,
-      columns: UserField.values,
-      where: '${UserField.id} = ?',
-      whereArgs: [id],
-    );
-    if (maps.isNotEmpty) {
-      return User.fromJson(maps.first);
-    } else {
-      return null;
-    }
-  }
-
   //Cart
   Future<void> createCartToDB(Cart cart) async {
     final db = await instance.database;
@@ -366,6 +335,26 @@ CREATE TABLE $tableOrder(
     }
   }
 
+  Future<void> updateCartToDB(Cart cart) async {
+    final db = await instance.database;
+    final map = await db.update(
+      tableCart,
+      cart.toJson(),
+      where: '${CartField.id} = ?',
+      whereArgs: [cart.id],
+    );
+  }
+
+  Future<void> deleteCartByIdFromDb(String id) async {
+    final db = await instance.database;
+    await db.delete(
+      tableCart,
+      where: '${CartField.id} = ?',
+      whereArgs: [id],
+    );
+  }
+
+  // Order
   Future<void> createOrderToDB(Order order) async {
     final db = await instance.database;
     final map = order.toJson();
