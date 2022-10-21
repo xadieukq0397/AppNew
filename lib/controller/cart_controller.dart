@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_login_ui/controller/product_controller.dart';
 import 'package:responsive_login_ui/data/model/cart.dart';
 import 'package:responsive_login_ui/data/model/product.dart';
 import 'package:responsive_login_ui/data/repository/cart_repo.dart';
@@ -19,14 +21,26 @@ class CartController extends GetxController {
     required this.cartRepo,
   });
 
-  Future<void> addToCart(Product product) async {
+  Future<bool> addToCart(Product product) async {
     _carts ??= [];
     int? maxId;
     for (int i = 0; i < _carts!.length; i++) {
       if (_carts![i].productId == product.id) {
-        _carts![i].quantity += 1;
-        await cartRepo.updateCartToDB(_carts![i]);
-        return;
+        if (_carts![i].quantity == product.inventory) {
+          Get.snackbar(
+            "Can't add",
+            "Product is not enough",
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+          print(_carts);
+          return false;
+        } else {
+          _carts![i].quantity += 1;
+          await cartRepo.updateCartToDB(_carts![i]);
+          print(_carts);
+          return true;
+        }
       }
     }
     List<Cart>? listCarts = await cartRepo.readAllCartFromDB();
@@ -47,7 +61,9 @@ class CartController extends GetxController {
       await cartRepo.createCartToDB(carts: carts);
       print("Create cart to DB");
     }
+    print(_carts);
     update();
+    return true;
   }
 
   Future<void> readAllCartByOrderIdFromDB(String orderId) async {
@@ -65,9 +81,6 @@ class CartController extends GetxController {
     _carts = await cartRepo.readAllCartFromDB();
     if (_carts != null) {
       await getTotalPrice(_carts);
-      for (var element in _carts!) {
-        print(element.id);
-      }
     }
 
     _isLoading = false;
@@ -83,6 +96,17 @@ class CartController extends GetxController {
   }
 
   Future<void> increment(int index) async {
+    Product? product = await Get.find<ProductController>()
+        .readProductByIdFromDB(_carts![index].productId);
+    if (_carts![index].quantity == product!.inventory) {
+      Get.snackbar(
+        "Can't add",
+        "Product is not enough",
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
     _carts![index].quantity += 1;
     _totalPrice += _carts![index].unitPrice!;
     await cartRepo.updateCartToDB(_carts![index]);

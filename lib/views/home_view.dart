@@ -63,36 +63,24 @@ class HomeView extends StatelessWidget {
                                     ),
                                     trailingActions: <SwipeAction>[
                                       SwipeAction(
+                                        performsFirstActionWithFullSwipe: true,
                                         widthSpace: 120,
-                                        color: Theme.of(context)
-                                            .scaffoldBackgroundColor,
-                                        content: Container(
-                                          height: 120,
-                                          width: 120,
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(20),
-                                            ),
-                                            color: Color(0xff00C569),
-                                          ),
-                                          child: const Center(
-                                            child: Text(
-                                              'Add to Cart',
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
+                                        color: Colors.white,
+                                        title: "Add to Cart",
+                                        style: const TextStyle(
+                                          color: Colors.green,
                                         ),
                                         onTap:
                                             (CompletionHandler handler) async {
-                                          await handler(true);
-                                          Get.find<CartController>().addToCart(
-                                              productController
-                                                  .products[index]);
-                                          productController
-                                              .removeProduct(index);
+                                          bool isAdd =
+                                              await Get.find<CartController>()
+                                                  .addToCart(productController
+                                                      .products[index]);
+                                          if (isAdd) {
+                                            await handler(true);
+                                            productController
+                                                .removeProduct(index);
+                                          }
                                         },
                                       ),
                                     ],
