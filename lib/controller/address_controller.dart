@@ -5,7 +5,7 @@ import 'package:responsive_login_ui/data/model/province.dart';
 import 'package:responsive_login_ui/data/repository/address_repo.dart';
 import 'package:responsive_login_ui/json_file/read_file_json/read_file_json.dart';
 import '../data/model/ward.dart';
-import '../data/provider/db/address_database.dart';
+import '../data/provider/db/storage_database.dart';
 
 class AddressController extends GetxController {
   final AddressRepo addressRepo;
@@ -62,11 +62,11 @@ class AddressController extends GetxController {
   @override
   void dispose() {
     super.dispose();
-    AddressDatabase.instance.close();
+    StorageDatabase.instance.close();
   }
 
   // Processed database
-  Future createProvincesToDB() async {
+  Future<void> createProvincesToDB() async {
     List<Province>? provinces =
         await readFileProvinceJson("lib/json_file/tinh_tp.json");
     if (provinces!.isNotEmpty) {
@@ -75,10 +75,10 @@ class AddressController extends GetxController {
     }
   }
 
-  Future createDistrictToDB() async {
-    List<District> districtsByProvinceID =
-        await addressRepo.readAllDistrictByParentID(_provinceID!);
-    if (districtsByProvinceID.isEmpty) {
+  Future<void> createDistrictToDB() async {
+    List<District>? districtsByProvinceID =
+        await addressRepo.readAllDistrictByParentIDFromDB(_provinceID!);
+    if (districtsByProvinceID == null) {
       List<District>? districts = await readFileDistrictJson(
           "lib/json_file/quan-huyen/$_provinceID.json");
       if (districts!.isNotEmpty) {
@@ -90,10 +90,10 @@ class AddressController extends GetxController {
     }
   }
 
-  Future createWardToDB() async {
-    List<Ward> wardsByDistrictID =
-        await addressRepo.readAllWardByParentID(_districtID!);
-    if (wardsByDistrictID.isEmpty) {
+  Future<void> createWardToDB() async {
+    List<Ward>? wardsByDistrictID =
+        await addressRepo.readAllWardByParentIDFromDB(_districtID!);
+    if (wardsByDistrictID == null) {
       List<Ward>? wards =
           await readFileWardJson("lib/json_file/xa-phuong/$_districtID.json");
       if (wards!.isNotEmpty) {
@@ -108,12 +108,11 @@ class AddressController extends GetxController {
   // Province
   Future<List<Province>> getProvinceSuggestions(String? query) async {
     List<Province> results = [];
-    String? provinceString = query;
-    List<Province> provinces = await addressRepo.readAllProvinces();
-    if (provinces.isNotEmpty) {
-      if (provinceString != null) {
+    List<Province>? provinces = await addressRepo.readAllProvincesFromDB();
+    if (provinces!.isNotEmpty) {
+      if (query != null) {
         Province? provinceByname =
-            await addressRepo.readProvinceByName(provinceString);
+            await addressRepo.readProvinceByNameFromDB(query);
         if (provinceByname != null) {
           _provinceID = provinceByname.id;
           _provinceType = provinceByname.type;
@@ -138,14 +137,13 @@ class AddressController extends GetxController {
   // District
   Future<List<District>> getDistrictSuggestions(String? query) async {
     List<District> results = [];
-    String? districtString = query;
     if (_provinceID != null) {
-      List<District> districts =
-          await addressRepo.readAllDistrictByParentID(_provinceID!);
-      if (districts.isNotEmpty) {
-        if (districtString != null) {
+      List<District>? districts =
+          await addressRepo.readAllDistrictByParentIDFromDB(_provinceID!);
+      if (districts!.isNotEmpty) {
+        if (query != null) {
           District? districtByname =
-              await addressRepo.readDistrictByName(districtString);
+              await addressRepo.readDistrictByNameFromDB(query);
           if (districtByname != null) {
             _districtID = districtByname.id;
             _districtType = districtByname.type;
@@ -170,12 +168,12 @@ class AddressController extends GetxController {
   // Ward
   Future<List<Ward>> getWardSuggestions(String? query) async {
     List<Ward> results = [];
-    String? wardString = query;
     if (_districtID != null) {
-      List<Ward> wards = await addressRepo.readAllWardByParentID(_districtID!);
-      if (wards.isNotEmpty) {
-        if (wardString != null) {
-          Ward? wardByname = await addressRepo.readWardByname(wardString);
+      List<Ward>? wards =
+          await addressRepo.readAllWardByParentIDFromDB(_districtID!);
+      if (wards!.isNotEmpty) {
+        if (query != null) {
+          Ward? wardByname = await addressRepo.readWardBynameFromDB(query);
           if (wardByname != null) {
             _wardType = wardByname.type;
           } else {
