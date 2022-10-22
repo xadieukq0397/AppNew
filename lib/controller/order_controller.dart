@@ -23,7 +23,8 @@ class OrderController extends GetxController {
     //       addressCustomer: 'Nam Dinh',
     //       customerName: 'Long',
     //       phoneCustomer: '1234',
-    //       transportCode: 11315),
+    //       transportCode: 11315,
+    //       statusOrder: "pending"),
     //   Order(
     //       id: '2',
     //       userId: '1',
@@ -32,7 +33,8 @@ class OrderController extends GetxController {
     //       addressCustomer: 'Ha Noi',
     //       customerName: 'Giang',
     //       phoneCustomer: '21541',
-    //       transportCode: 15651),
+    //       transportCode: 15651,
+    //       statusOrder: 'confirm'),
     //   Order(
     //       id: '3',
     //       userId: '2',
@@ -41,7 +43,8 @@ class OrderController extends GetxController {
     //       addressCustomer: 'Xuan Truong',
     //       customerName: 'Trang',
     //       phoneCustomer: '6465153',
-    //       transportCode: 31316),
+    //       transportCode: 31316,
+    //       statusOrder: 'pending'),
     // ];
 
     // if (orders.isNotEmpty) {
@@ -58,7 +61,7 @@ class OrderController extends GetxController {
       _orders.add(order);
     }
     for (var element in _orders) {
-      print(element.addressCustomer);
+      print(element.statusOrder);
     }
     update();
   }

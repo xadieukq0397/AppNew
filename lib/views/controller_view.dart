@@ -17,7 +17,7 @@ class ControlView extends StatelessWidget {
       bottomNavigationBar: GetBuilder<ControlViewController>(
         builder: (controlViewController) => DefaultTabController(
           initialIndex: controlViewController.navigatorValue,
-          length: 3,
+          length: 4,
           child: TabBar(
             tabs: const [
               Tab(
@@ -32,6 +32,11 @@ class ControlView extends StatelessWidget {
                   color: activeCyanColor,
                 ),
               ),
+              Tab(
+                  child: Icon(
+                Icons.archive_outlined,
+                color: activeCyanColor,
+              )),
               Tab(
                 child: Icon(
                   Icons.account_circle_outlined,

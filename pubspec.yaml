@@ -21,8 +21,6 @@ dependencies:
   sqflite: 
   intl:
   flutter_swipe_action_cell :
-
-  
   
 
 dev_dependencies:

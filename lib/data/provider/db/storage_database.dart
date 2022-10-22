@@ -48,30 +48,31 @@ class StorageDatabase {
     final phoneCustomer = 'TEXT NOT NULL';
     final addressCustomer = 'TEXT NOT NULL';
     final transportCode = 'INTERGER NOT NULL';
+    final statusOrder = 'TEXT NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableProvinces(
+  ${ProvinceField.id} $id,
   ${ProvinceField.name} $name,
   ${ProvinceField.slug} $slug,
-  ${ProvinceField.type} $type,
-  ${ProvinceField.id} $id
+  ${ProvinceField.type} $type
   )''');
     await db.execute('''
 CREATE TABLE $tableDistrict(
+  ${DistrictField.id} $id,
   ${DistrictField.name} $name,
   ${DistrictField.type} $type,
   ${DistrictField.slug} $slug,
   ${DistrictField.path} $path,
-  ${DistrictField.id} $id,
   ${DistrictField.parent_id} $parent_id
   )''');
     await db.execute('''
 CREATE TABLE $tableWard(
+  ${WardField.id} $id,
   ${WardField.name} $name,
   ${WardField.type} $type,
   ${WardField.slug} $slug,
   ${WardField.path} $path,
-  ${WardField.id} $id,
   ${WardField.parent_id} $parent_id
   )''');
     await db.execute('''
@@ -102,7 +103,8 @@ CREATE TABLE $tableOrder(
   ${OrderField.customerName} $customerName,
   ${OrderField.phoneCustomer} $phoneCustomer,
   ${OrderField.addressCustomer} $addressCustomer,
-  ${OrderField.transportCode} $transportCode
+  ${OrderField.transportCode} $transportCode,
+  ${OrderField.statusOrder} $statusOrder
   )''');
   }
 
