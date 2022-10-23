@@ -10,6 +10,7 @@ class ControlView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<ControlViewController>(
+        init: ControlViewController(),
         builder: (controlViewController) {
           return controlViewController.currentScreen;
         },

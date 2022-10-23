@@ -270,7 +270,6 @@ class _LoginViewState extends State<LoginView> {
 
           Get.offNamed(Routes.getControlViewPage());
           Get.find<AddressController>().createProvincesToDB();
-          Get.put(ControlViewController());
         },
         // },
         // },
