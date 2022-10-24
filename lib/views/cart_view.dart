@@ -70,7 +70,7 @@ class CartView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: const EdgeInsets.only(
-                                              left: 10, top: 5, bottom: 5),
+                                              left: 5, top: 5, bottom: 5),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20),
@@ -106,7 +106,7 @@ class CartView extends StatelessWidget {
                                         ),
                                         Container(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 5, vertical: 5),
+                                              horizontal: 3, vertical: 5),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20),

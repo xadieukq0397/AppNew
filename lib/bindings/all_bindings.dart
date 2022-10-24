@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/address_controller.dart';
 import 'package:responsive_login_ui/controller/auth_controller.dart';
 import 'package:responsive_login_ui/controller/cart_controller.dart';
+import 'package:responsive_login_ui/controller/checkout_controller.dart';
 import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:responsive_login_ui/controller/product_controller.dart';
 import 'package:responsive_login_ui/data/repository/address_repo.dart';
@@ -24,5 +25,6 @@ class AllBindings extends Bindings {
     Get.lazyPut(() => CartController(cartRepo: Get.find()));
     Get.lazyPut(() => Orderrepo());
     Get.lazyPut(() => OrderController(orderRepo: Get.find()));
+    Get.lazyPut(() => CheckOutController());
   }
 }
