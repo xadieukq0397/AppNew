@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/views/address_view.dart';
 import 'package:responsive_login_ui/views/cart_view.dart';
-import 'package:responsive_login_ui/views/check_out/select_transport.dart';
+import 'package:responsive_login_ui/views/check_out/select_transport_view.dart';
 import 'package:responsive_login_ui/views/home_view.dart';
 import 'package:responsive_login_ui/views/login_view.dart';
 import 'package:responsive_login_ui/views/signup_view.dart';
 import 'package:responsive_login_ui/views/controller_view.dart';
 
-import '../views/check_out/address_checkout.dart';
+import '../views/check_out/address_checkout_view.dart';
 
 class Routes {
   static const String login = '/login';
@@ -33,7 +33,7 @@ class Routes {
     GetPage(name: address, page: () => const AddressView()),
     GetPage(name: home, page: () => const HomeView()),
     GetPage(name: cart, page: () => const CartView()),
-    GetPage(name: transport, page: () => SelectTransport()),
-    GetPage(name: delivery, page: () => AddressCheckOut()),
+    GetPage(name: transport, page: () => const SelectTransport()),
+    GetPage(name: delivery, page: () => const AddressCheckOut()),
   ];
 }

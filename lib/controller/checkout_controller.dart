@@ -1,27 +1,26 @@
 import 'package:get/get.dart';
 
 class CheckOutController extends GetxController {
-  var selectTransport = "".obs;
-  var selectTypeDelivery = "".obs;
-  var billCode = "".obs;
-  var addressGuess = "".obs;
+  String? selectTransport;
+  String? selectTypeDelivery;
+  String? billCode;
+  String? addressGuess;
+
   onChangedTransport(var transport) {
-    selectTransport.value = transport;
+    selectTransport = transport;
+    update();
     print(transport);
   }
 
   onChangedDelivery(var delivery) {
-    selectTypeDelivery.value = delivery;
+    selectTypeDelivery = delivery;
+    update();
     print(delivery);
   }
 
   onChangedBillCode(var billText) {
-    billCode.value = billText;
+    billCode = billText;
+    update();
     print(billText);
-  }
-
-  onChangedAddressGuess(var address) {
-    addressGuess.value = address;
-    print(address);
   }
 }

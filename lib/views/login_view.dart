@@ -269,7 +269,6 @@ class _LoginViewState extends State<LoginView> {
           //   print("After encode: " + userNameEnCode);
 
           Get.offNamed(Routes.getControlViewPage());
-          Get.find<AddressController>().createProvincesToDB();
         },
         // },
         // },

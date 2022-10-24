@@ -59,6 +59,13 @@ class AddressController extends GetxController {
     update();
   }
 
+  bool _isEnableVillageText = false;
+  bool get isEnableVillageText => _isEnableVillageText;
+  set isEnableVillageText(bool? isSelect) {
+    _isEnableVillageText = isSelect!;
+    update();
+  }
+
   @override
   void dispose() {
     super.dispose();

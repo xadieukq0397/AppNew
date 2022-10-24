@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/cart_controller.dart';
+import 'package:responsive_login_ui/routes/routes.dart';
 
 class CartView extends StatelessWidget {
   const CartView({Key? key}) : super(key: key);
@@ -167,17 +168,23 @@ class CartView extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Container(
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: const Color(0xff00C569),
-                                    ),
-                                    child: const Text(
-                                      'Check out',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          Routes.getSelectTransportPage());
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: const Color(0xff00C569),
+                                      ),
+                                      child: const Text(
+                                        'Check out',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   )
