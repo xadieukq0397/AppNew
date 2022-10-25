@@ -3,7 +3,7 @@ import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/cart_controller.dart';
 import 'package:responsive_login_ui/controller/product_controller.dart';
-import '../constants.dart';
+import '../config/ui_constants.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);

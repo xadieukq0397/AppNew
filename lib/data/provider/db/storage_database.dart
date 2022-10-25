@@ -43,7 +43,7 @@ class StorageDatabase {
     final productId = 'TEXT NOT NULL';
     final orderId = 'TEXT NOT NULL';
     final quantity = 'INTERGER NOT NULL';
-    final weight = 'REAL NOT NULL';
+    final weight = 'INTERGER NOT NULL';
     final customerName = 'TEXT NOT NULL';
     final phoneCustomer = 'TEXT NOT NULL';
     final addressCustomer = 'TEXT NOT NULL';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/auth_controller.dart';
 import '../routes/routes.dart';
-import '../constants.dart';
+import '../config/ui_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpView extends StatefulWidget {

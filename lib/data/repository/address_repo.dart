@@ -1,14 +1,9 @@
 import '../model/district.dart';
 import '../model/province.dart';
 import '../model/ward.dart';
-import '../provider/api/api.dart';
 import '../provider/db/storage_database.dart';
 
 class AddressRepo {
-  final Api api;
-
-  AddressRepo({required this.api});
-
   // Provinces
   Future<void> createProvincesToDB({List<Province>? provinces}) async {
     for (int i = 0; i < provinces!.length; i++) {

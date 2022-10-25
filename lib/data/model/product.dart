@@ -26,7 +26,7 @@ class Product {
   final String? decription;
   final int? price;
   int? inventory;
-  final num? weight;
+  final int? weight;
 
   Product({
     required this.id,

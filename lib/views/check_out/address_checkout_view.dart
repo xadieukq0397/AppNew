@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/checkout_controller.dart';
+import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:responsive_login_ui/views/widgets/select_address.dart';
 import '../../routes/routes.dart';
 
@@ -94,8 +95,19 @@ class AddressCheckOut extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap: () {
-                Get.toNamed(Routes.getControlViewPage());
+              onTap: () async {
+                Map<String, dynamic> query = {
+                  "address": "Xóm 9, Xuân Hồng",
+                  "province": "Nam Định",
+                  "district": "Xuân Trường",
+                  "pick_province": "Hà Nội",
+                  "pick_district": "Thanh Xuân",
+                  "weight": "100000",
+                  "value": "300000",
+                  "deliver_option": "none",
+                };
+
+                await Get.find<OrderController>().getDataTransportFee(query);
               },
               child: Container(
                 padding: const EdgeInsets.all(10),

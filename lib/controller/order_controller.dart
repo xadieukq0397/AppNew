@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:responsive_login_ui/data/model/transport_fee.dart';
 import 'package:responsive_login_ui/data/repository/order_repo.dart';
 
 import '../data/model/order.dart';
 
 class OrderController extends GetxController {
-  final Orderrepo orderRepo;
+  final OrderRepo orderRepo;
 
   List<Order> _orders = [];
   List<Order> get orders => _orders;
@@ -13,6 +16,25 @@ class OrderController extends GetxController {
     required this.orderRepo,
   });
 
+  // Server GHTK
+  Future<void> getDataTransportFee(Map<String, dynamic> query) async {
+    Response response = await orderRepo.getDataTransportFee(query);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> result = jsonDecode(jsonEncode(response.body));
+      print(result);
+      if (result['success'] == true) {
+        TransportFee transportFee = TransportFee.fromJson(result);
+        print('got transport fee');
+        print('------------------------' + transportFee.fee!.fee.toString());
+      } else {
+        print("Not got transport Free");
+      }
+    } else {
+      print("error");
+    }
+  }
+
+  // Database
   Future<void> createOrderToDB() async {
     // List<Order>? orders = [
     //   Order(

@@ -33,7 +33,7 @@ class ProductController extends GetxController {
             "Xxxl",
         price: 152000,
         inventory: 125,
-        weight: 22.50,
+        weight: 1300,
       ),
       Product(
         id: '2',
@@ -51,7 +51,7 @@ class ProductController extends GetxController {
             "Sạc từ 0% đến 45% chỉ trong khoảng 30 phút. Đúng thế, bạn không đọc nhầm đâu. Với pin lớn hơn thế hệ tiền nhiệm và công suất sạc nhanh, Galaxy Watch5 luôn sẵn sàng giúp bạn quay lại cuộc chơi tức thì.",
         price: 3150000,
         inventory: 15,
-        weight: 30.50,
+        weight: 700,
       ),
       Product(
         id: '3',
@@ -67,7 +67,7 @@ class ProductController extends GetxController {
             "6Một số tính năng không khả dụng tại một số quốc gia hoặc khu vực.",
         price: 30000000,
         inventory: 25,
-        weight: 24.50,
+        weight: 1200,
       ),
       Product(
         id: '4',
@@ -80,7 +80,7 @@ class ProductController extends GetxController {
             "Samsung Galaxy S22 Ultra 256GB ra mắt với một diện mạo “cũ mà mới”, máy sử dụng form thiết kế của dòng Galaxy Note trước đây để đưa vào dòng Galaxy S. Với hai cạnh trên và dưới vát phẳng, hai cạnh bên được bo cong mềm mại.",
         price: 21000000,
         inventory: 30,
-        weight: 38.50,
+        weight: 1000,
       ),
       Product(
         id: '5',
@@ -91,7 +91,7 @@ class ProductController extends GetxController {
             "Nổi bật với kiểu dáng thời trang và màu sắc tươi trẻ, tai nghe nhét tai Samsung là phụ kiện cá tính dành cho các tín đồ âm nhạc. Đặc biệt với dòng tai nghe cá tính này, bạn sẽ luôn cảm nhận âm nhạc một cách trọn vẹn. Tai nghe nhét tai Samsung tái hiện âm thanh trung thực, rõ ràng với âm bass trầm ấm, âm trung rõ ràng và âm cao chi tiết. Dù là với những giai điệu ballad trữ tình nhẹ nhàng hay bản rock sôi động, tai nghe nhét tai Samsung  luôn mang đến cho bạn những phút giây giải trí tuyệt vời. Không chỉ thế, tai nghe được trang bị chuẩn kết nối 3.5mm tương thích hoàn hảo với các thiết bị số phổ biến.",
         price: 89000,
         inventory: 10,
-        weight: 50.50,
+        weight: 500,
       ),
     ];
 

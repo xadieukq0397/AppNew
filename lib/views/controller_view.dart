@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/controller_view_controller.dart';
-import '../constants.dart';
+import '../config/ui_constants.dart';
 
 class ControlView extends StatelessWidget {
   const ControlView({Key? key}) : super(key: key);

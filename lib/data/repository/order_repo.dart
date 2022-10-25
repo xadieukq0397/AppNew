@@ -1,7 +1,20 @@
+import 'package:get/get.dart';
+import 'package:responsive_login_ui/config/app_constants.dart';
+import 'package:responsive_login_ui/data/provider/api/api_ghtk.dart';
+
 import '../model/order.dart';
 import '../provider/db/storage_database.dart';
 
-class Orderrepo {
+class OrderRepo {
+  final ApiGHTK apiGHTK;
+
+  OrderRepo({required this.apiGHTK});
+  //Server GHTK
+  Future<Response> getDataTransportFee(Map<String, dynamic> query) async {
+    return await apiGHTK.getData(AppConstants.transportFeeGHTK, query: query);
+  }
+
+  //Database
   Future<void> createOrderToDB({List<Order>? orders}) async {
     for (int i = 0; i < orders!.length; i++) {
       if (orders[i] is Order) {
