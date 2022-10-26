@@ -92,6 +92,10 @@
   "@searchWard": {
     "description": "Search your Ward"
   },
+  "searchVillage": "Search Your Village",
+  "@searchVillage": {
+    "description": "Search your Village"
+  },
   "searchNotFound": "Not Found",
   "@searchNotFound": {
     "description": "Not found"
@@ -119,6 +123,14 @@
   "notSelectWardTwo": "Please select a Ward",
   "@notSelectWardTwo": {
     "description": "Please choose Ward"
+  },
+  "notSelectVillageOne": "You have not selected a Village",
+  "@notSelectVillageOne": {
+    "description": "Not selected Village"
+  },
+  "notSelectVillageTwo": "Please select a Village",
+  "@notSelectVillageTwo": {
+    "description": "Please choose Village"
   },
   "errSelectProvinceOne": "You have chosen the wrong Province",
   "@errProvinceOne": {
