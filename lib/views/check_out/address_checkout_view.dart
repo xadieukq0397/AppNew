@@ -179,8 +179,26 @@ class AddressCheckOut extends StatelessWidget {
                         "value": "300000",
                         "deliver_option": "xteam",
                       };
+
                       Get.toNamed(Routes.getControlViewPage());
                       orderController.getDataTransportFee();
+                    }
+                  }
+
+                  if (Get.find<CheckOutController>().selectTypeDelivery ==
+                      'billCode') {
+                    if (_billCodeController.text.trim().isEmpty) {
+                      Get.snackbar(
+                          AppLocalizations.of(context)!.notEnterBillCodeOne,
+                          AppLocalizations.of(context)!.notEnterBillCodeTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white);
+                    } else {
+                      orderController.query = {};
+
+                      // Get.toNamed(Routes.getControlViewPage());
+                      orderController
+                          .getStatusOrder(_billCodeController.text.trim());
                     }
                   }
                 },

@@ -37,5 +37,7 @@
     "errSelectDistrictTwo": "Vui lòng chọn lại Quận huyện",
     "errSelectWardOne": "Bạn đã chọn Xã phường không đúng",
     "errSelectWardTwo": "Vui lòng chọn lại Xã phường",
-    "agreeButton" : "Đồng ý"
+    "agreeButton" : "Đồng ý",
+    "notEnterBillCodeOne" : "Bạn chưa nhập mã vận đơn",
+    "notEnterBillCodeTwo" : "Vui lòng nhập mã vận đơn"
 }

@@ -159,5 +159,13 @@
   "agreeButton" : "Agree",
   "@agreeButton": {
     "description": "Button press Agree"
+  },
+  "notEnterBillCodeOne" : "You not enter the billcode",
+  "@notEnterBillCodeOne": {
+    "description": "Error billcode"
+  },
+  "notEnterBillCodeTwo" : "Please enter billcode",
+  "@notEnterBillCodeTwo": {
+    "description": "Enter billcode"
   }
 }
