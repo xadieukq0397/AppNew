@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/cart_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:responsive_login_ui/routes/routes.dart';
 
 class CartView extends StatelessWidget {
@@ -15,10 +16,10 @@ class CartView extends StatelessWidget {
             height: 100,
             width: double.infinity,
             color: Colors.blueAccent,
-            child: const Center(
+            child: Center(
               child: Text(
-                'Your Cart',
-                style: TextStyle(
+                AppLocalizations.of(context)!.titleCart,
+                style: const TextStyle(
                   fontSize: 22,
                   color: Colors.white,
                 ),
@@ -43,9 +44,9 @@ class CartView extends StatelessWidget {
                               width: 200,
                             ),
                             const SizedBox(height: 20),
-                            const Text(
-                              'Cart Empty',
-                              style: TextStyle(
+                            Text(
+                              AppLocalizations.of(context)!.textEmptyCart,
+                              style: const TextStyle(
                                 fontSize: 32,
                               ),
                               textAlign: TextAlign.center,
@@ -90,9 +91,11 @@ class CartView extends StatelessWidget {
                                               const SizedBox(height: 10),
                                               Row(
                                                 children: [
-                                                  const Text(
-                                                    "Price: ",
-                                                    style: TextStyle(
+                                                  Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .textPrice,
+                                                    style: const TextStyle(
                                                         color: Colors.grey),
                                                   ),
                                                   Text(
@@ -155,9 +158,9 @@ class CartView extends StatelessWidget {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Text(
-                                        'Total',
-                                        style: TextStyle(
+                                      Text(
+                                        AppLocalizations.of(context)!.textTotal,
+                                        style: const TextStyle(
                                             fontSize: 22, color: Colors.grey),
                                       ),
                                       const SizedBox(height: 10),
@@ -179,9 +182,10 @@ class CartView extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(20),
                                         color: const Color(0xff00C569),
                                       ),
-                                      child: const Text(
-                                        'Check out',
-                                        style: TextStyle(
+                                      child: Text(
+                                        AppLocalizations.of(context)!
+                                            .chekoutButton,
+                                        style: const TextStyle(
                                           fontSize: 18,
                                           color: Colors.white,
                                         ),

@@ -159,5 +159,73 @@
   "agreeButton" : "Agree",
   "@agreeButton": {
     "description": "Button press Agree"
+  },
+  "textfieldSearch" : "Search your something",
+  "@textfieldSearch": {
+    "description": "Search product by name"
+  },
+  "addToCartButton" : "Add to Cart",
+  "@addToCartButton": {
+    "description": "Button add Product to Cart"
+  },
+  "textInventory" : "Inventory ",
+  "@textInventory": {
+    "description": "Text of Inventory"
+  },
+  "titleCart" : "Your Cart",
+  "@titleCart": {
+    "description": "Title of Cart Screen"
+  },
+  "textPrice" : "Price ",
+  "@price": {
+    "description": "Price (vnđ)"
+  },
+  "chekoutButton" : "Check out",
+  "@chekoutButton": {
+    "description": "Button of check out"
+  },
+  "textTotal" : "Total",
+  "@textTotal": {
+    "description": "Total price"
+  },
+  "textEmptyCart" : "Cart Empty",
+  "@textEmptyCart": {
+    "description": "text empty cart"
+  },
+  "titleTransport" : "Your Transport",
+  "@titleTransport": {
+    "description": "Title of transport page"
+  },
+  "titleEconomicalDelivery" : "Economical delivery",
+  "@titleEconomicalDelivery": {
+    "description": "Title of Economical Delivery"
+  },
+  "titleFastDelivery" : "Economical delivery",
+  "@titleFastDelivery": {
+    "description": "Title of Fast Delivery"
+  },
+  "nextButton" : "Next",
+  "@nextButton": {
+    "description": "button next"
+  },
+  "titleOrderBy" : "Order By",
+  "@titleOrderBy": {
+    "description": "title of order by"
+  },
+  "titleBillCode" : "Bill Code",
+  "@titleBillCode": {
+    "description": "title of Bill Code TextField"
+  },
+  "textFieldBillCode" : "Enter Bill Code",
+  "@textFieldBillCode": {
+    "description": "textField of Bill Code TextField"
+  },
+  "titleCustomerAddress" : "Customer's Address",
+  "@titleCustomerAddress": {
+    "description": "title of Customer's Address"
+  },
+  "orderButton" : "Create an order",
+  "@orderButton": {
+    "description": "title of order"
   }
 }

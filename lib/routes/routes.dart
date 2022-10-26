@@ -7,7 +7,7 @@ import 'package:responsive_login_ui/views/login_view.dart';
 import 'package:responsive_login_ui/views/signup_view.dart';
 import 'package:responsive_login_ui/views/controller_view.dart';
 
-import '../views/check_out/address_checkout_view.dart';
+import '../views/check_out/order_by_view.dart';
 
 class Routes {
   static const String login = '/login';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/checkout_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../routes/routes.dart';
 
 class SelectTransport extends StatelessWidget {
@@ -15,10 +16,10 @@ class SelectTransport extends StatelessWidget {
             height: 100,
             width: double.infinity,
             color: Colors.blueAccent,
-            child: const Center(
+            child: Center(
               child: Text(
-                'Select Your Transport',
-                style: TextStyle(
+                AppLocalizations.of(context)!.titleTransport,
+                style: const TextStyle(
                   fontSize: 22,
                   color: Colors.white,
                 ),
@@ -37,7 +38,7 @@ class SelectTransport extends StatelessWidget {
                         checkOutController.onChangedTransport(value);
                       },
                     ),
-                    const Text("Giao hàng tiết kiệm")
+                    Text(AppLocalizations.of(context)!.titleEconomicalDelivery)
                   ],
                 ),
                 Row(
@@ -49,7 +50,7 @@ class SelectTransport extends StatelessWidget {
                         checkOutController.onChangedTransport(value);
                       },
                     ),
-                    const Text("Giao hàng nhanh")
+                    Text(AppLocalizations.of(context)!.titleFastDelivery)
                   ],
                 ),
               ],
@@ -67,9 +68,9 @@ class SelectTransport extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Color(0xff00C569),
               ),
-              child: const Text(
-                'NEXT',
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context)!.nextButton,
+                style: const TextStyle(
                   fontSize: 25,
                   color: Colors.white,
                 ),

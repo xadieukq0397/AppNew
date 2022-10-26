@@ -28,10 +28,10 @@ class AddressCheckOut extends StatelessWidget {
               height: 100,
               width: double.infinity,
               color: Colors.blueAccent,
-              child: const Center(
+              child: Center(
                 child: Text(
-                  'ADDRESS DELIVERY',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.titleOrderBy,
+                  style: const TextStyle(
                     fontSize: 22,
                     color: Colors.white,
                   ),
@@ -50,7 +50,7 @@ class AddressCheckOut extends StatelessWidget {
                           checkOutController.onChangedDelivery(value);
                         },
                       ),
-                      const Text("Enter Bill Code"),
+                      Text(AppLocalizations.of(context)!.titleBillCode),
                     ],
                   ),
                   checkOutController.selectTypeDelivery == "billCode"
@@ -58,9 +58,10 @@ class AddressCheckOut extends StatelessWidget {
                           padding: const EdgeInsets.all(16),
                           child: TextField(
                               controller: _billCodeController,
-                              decoration: const InputDecoration(
-                                hintText: "Enter Bill Code",
-                                border: OutlineInputBorder(
+                              decoration: InputDecoration(
+                                hintText: AppLocalizations.of(context)!
+                                    .textFieldBillCode,
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                 ),
@@ -81,7 +82,7 @@ class AddressCheckOut extends StatelessWidget {
                           checkOutController.onChangedDelivery(value);
                         },
                       ),
-                      const Text("Enter Customer's Address"),
+                      Text(AppLocalizations.of(context)!.titleCustomerAddress),
                     ],
                   ),
                   checkOutController.selectTypeDelivery == "address"
@@ -189,9 +190,9 @@ class AddressCheckOut extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: Color(0xff00C569),
                   ),
-                  child: const Text(
-                    'NEXT',
-                    style: TextStyle(
+                  child: Text(
+                    AppLocalizations.of(context)!.orderButton,
+                    style: const TextStyle(
                       fontSize: 25,
                       color: Colors.white,
                     ),

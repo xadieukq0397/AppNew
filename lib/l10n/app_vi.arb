@@ -37,5 +37,22 @@
     "errSelectDistrictTwo": "Vui lòng chọn lại Quận huyện",
     "errSelectWardOne": "Bạn đã chọn Xã phường không đúng",
     "errSelectWardTwo": "Vui lòng chọn lại Xã phường",
-    "agreeButton" : "Đồng ý"
+    "agreeButton" : "Đồng ý",
+    "textfieldSearch" : "Tìm sản phẩm",
+    "addToCartButton" : "Thêm vào giỏ hàng",
+    "textInventory" : "Hàng trong kho ",
+    "titleCart" : "Giỏ hàng của bạn",
+    "textEmptyCart" : "Giỏ hàng trống",
+    "textPrice" : "Giá ",
+    "chekoutButton" : "Thanh toán",
+    "textTotal" : "Tổng giá tiền",
+    "titleTransport" : "Phương thức vận chuyển",
+    "titleEconomicalDelivery" : "Giao hàng tiết kiệm",
+    "titleFastDelivery" : "Giao hàng nhanh",
+    "nextButton" : "Tiếp tục",
+    "titleOrderBy" : "Cách thức đặt hàng",
+    "titleBillCode" : "Mã vận đơn",
+    "textFieldBillCode" : "Nhập mã vận đơn",
+    "titleCustomerAddress" : "Địa chỉ khách hàng",
+    "orderButton" : "Đặt hàng"
 }

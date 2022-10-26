@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/cart_controller.dart';
 import 'package:responsive_login_ui/controller/product_controller.dart';
 import '../config/ui_constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class HomeView extends StatelessWidget {
             child: GetBuilder<ProductController>(
               builder: (productController) => TextField(
                 decoration: InputDecoration(
-                  hintText: "Search your something",
+                  hintText: AppLocalizations.of(context)!.textfieldSearch,
                   fillColor: Colors.white,
                   filled: true,
                   border: OutlineInputBorder(
@@ -72,12 +73,12 @@ class HomeView extends StatelessWidget {
                                     trailingActions: <SwipeAction>[
                                       SwipeAction(
                                         performsFirstActionWithFullSwipe: true,
-                                        widthSpace: 120,
+                                        widthSpace: 160,
                                         color: Colors.white,
-                                        title: "Add to Cart",
+                                        title: AppLocalizations.of(context)!
+                                            .addToCartButton,
                                         style: const TextStyle(
-                                          color: Colors.green,
-                                        ),
+                                            color: Colors.green, fontSize: 14),
                                         onTap:
                                             (CompletionHandler handler) async {
                                           bool isAdd =
@@ -94,7 +95,7 @@ class HomeView extends StatelessWidget {
                                     ],
                                     child: Row(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: 120,
                                           height: 120,
                                           child: ClipRRect(
@@ -111,14 +112,7 @@ class HomeView extends StatelessWidget {
                                         Expanded(
                                           child: Container(
                                             height: 120,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(20),
-                                                bottomRight:
-                                                    Radius.circular(20),
-                                              ),
-                                              color: Colors.white,
-                                            ),
+                                            color: Colors.white,
                                             child: Container(
                                               padding: const EdgeInsets.only(
                                                   left: 10, right: 10, top: 10),
@@ -161,7 +155,9 @@ class HomeView extends StatelessWidget {
                                                             color: Colors.red),
                                                       ),
                                                       Text(
-                                                        saledName +
+                                                        AppLocalizations.of(
+                                                                    context)!
+                                                                .textInventory +
                                                             productController
                                                                 .products[index]
                                                                 .inventory
