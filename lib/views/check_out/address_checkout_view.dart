@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/address_controller.dart';
 import 'package:responsive_login_ui/controller/checkout_controller.dart';
-import 'package:responsive_login_ui/controller/controller_view_controller.dart';
 import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:responsive_login_ui/views/widgets/select_address.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
