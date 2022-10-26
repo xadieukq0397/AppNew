@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/controller_view_controller.dart';
 import '../config/ui_constants.dart';
+import '../controller/cart_controller.dart';
+import '../controller/product_controller.dart';
 
 class ControlView extends StatelessWidget {
   const ControlView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().readAllCartFromDB();
+    Get.find<ProductController>().readAllProductFromDB();
     return Scaffold(
       body: GetBuilder<ControlViewController>(
         init: ControlViewController(),

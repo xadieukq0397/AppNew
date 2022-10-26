@@ -14,6 +14,10 @@ class OrderRepo {
     return await apiGHTK.getData(AppConstants.transportFeeGHTK, query: query);
   }
 
+  Future<Response> getOrderStatus(String orderNumber) async {
+    return await apiGHTK.getData(AppConstants.statusOrder + orderNumber);
+  }
+
   //Database
   Future<void> createOrderToDB({List<Order>? orders}) async {
     for (int i = 0; i < orders!.length; i++) {

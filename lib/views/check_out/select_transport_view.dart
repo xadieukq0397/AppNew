@@ -59,20 +59,33 @@ class SelectTransport extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(Routes.getSelectDeliveryPage());
-            },
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
-                color: Color(0xff00C569),
-              ),
-              child: Text(
-                AppLocalizations.of(context)!.nextButton,
-                style: const TextStyle(
-                  fontSize: 25,
-                  color: Colors.white,
+          GetBuilder<CheckOutController>(
+            builder: (checkOutController) => GestureDetector(
+              onTap: () {
+                if (checkOutController.selectTransport == null) {
+                  Get.snackbar(
+                    AppLocalizations.of(context)!.notSelectTransport,
+                    AppLocalizations.of(context)!.selectTransport,
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  );
+                } else if (checkOutController.selectTransport == "economical") {
+                  Get.toNamed(Routes.getSelectDeliveryPage());
+                } else {
+                  print("null");
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                  color: Color(0xff00C569),
+                ),
+                child: Text(
+                  AppLocalizations.of(context)!.nextButton,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

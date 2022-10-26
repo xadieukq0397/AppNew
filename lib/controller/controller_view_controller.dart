@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_login_ui/controller/cart_controller.dart';
 import 'package:responsive_login_ui/views/order_view.dart';
 import '../views/cart_view.dart';
 import '../views/home_view.dart';
@@ -19,7 +18,6 @@ class ControlViewController extends GetxController {
         break;
       case 1:
         _currentScreen = const CartView();
-        Get.find<CartController>().readAllCartFromDB();
         break;
       case 2:
         _currentScreen = const OrderView();

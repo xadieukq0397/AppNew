@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/address_controller.dart';
 import 'package:responsive_login_ui/controller/checkout_controller.dart';
-import 'package:responsive_login_ui/controller/controller_view_controller.dart';
 import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:responsive_login_ui/views/widgets/select_address.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../../routes/routes.dart';
 
 class AddressCheckOut extends StatelessWidget {
@@ -104,6 +102,12 @@ class AddressCheckOut extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   if (Get.find<CheckOutController>().selectTypeDelivery ==
+                      null) {
+                    Get.snackbar(AppLocalizations.of(context)!.notSelectOrderBy,
+                        AppLocalizations.of(context)!.selectOrderBy,
+                        backgroundColor: Colors.red, colorText: Colors.white);
+                  } else if (Get.find<CheckOutController>()
+                          .selectTypeDelivery ==
                       'address') {
                     if (_provinceController.text.trim().isEmpty) {
                       Get.snackbar(
@@ -174,14 +178,29 @@ class AddressCheckOut extends StatelessWidget {
                         'ward': _wardController.text,
                         'district': _districtController.text,
                         'province': _provinceController.text,
-                        "pick_province": "Nam Định",
-                        "pick_district": "Giao Thủy",
-                        "weight": "100000",
+                        "pick_province": "Hà Nội",
+                        "pick_district": "Thanh Xuân",
+                        "weight": "1000",
                         "value": "300000",
-                        "deliver_option": "xteam",
+                        "deliver_option": "none",
                       };
                       Get.toNamed(Routes.getControlViewPage());
                       orderController.getDataTransportFee();
+                    }
+                  } else if (Get.find<CheckOutController>()
+                          .selectTypeDelivery ==
+                      'billCode') {
+                    if (_billCodeController.text.trim().isEmpty) {
+                      Get.snackbar(
+                        AppLocalizations.of(context)!.notEnterBillCodeOne,
+                        AppLocalizations.of(context)!.notEnterBillCodeTwo,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                    } else {
+                      Get.toNamed(Routes.getControlViewPage());
+                      orderController
+                          .getStatusOrder(_billCodeController.text.trim());
                     }
                   }
                 },
