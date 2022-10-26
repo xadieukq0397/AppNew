@@ -11,14 +11,20 @@ class OrderController extends GetxController {
 
   List<Order> _orders = [];
   List<Order> get orders => _orders;
+  Map<String, dynamic> _query = {};
+
+  set query(Map<String, dynamic> value) {
+    _query = value;
+    update();
+  }
 
   OrderController({
     required this.orderRepo,
   });
 
   // Server GHTK
-  Future<void> getDataTransportFee(Map<String, dynamic> query) async {
-    Response response = await orderRepo.getDataTransportFee(query);
+  Future<void> getDataTransportFee() async {
+    Response response = await orderRepo.getDataTransportFee(_query);
     if (response.statusCode == 200) {
       Map<String, dynamic> result = jsonDecode(jsonEncode(response.body));
       print(result);
@@ -26,12 +32,14 @@ class OrderController extends GetxController {
         TransportFee transportFee = TransportFee.fromJson(result);
         print('got transport fee');
         print('------------------------' + transportFee.fee!.fee.toString());
+        clear();
       } else {
         print("Not got transport Free");
       }
     } else {
       print("error");
     }
+    update();
   }
 
   // Database
@@ -86,5 +94,9 @@ class OrderController extends GetxController {
       print(element.statusOrder);
     }
     update();
+  }
+
+  void clear() {
+    _query = {};
   }
 }

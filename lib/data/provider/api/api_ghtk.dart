@@ -13,8 +13,8 @@ class ApiGHTK extends GetConnect implements GetxService {
     _mainHeader = {'Token': token};
   }
 
-  Future<Response> getData(String uri,
-      {required Map<String, dynamic> query}) async {
+  Future<Response> getData(String uri, {Map<String, dynamic>? query}) async {
+    print(query);
     try {
       Response response = await get(uri, headers: _mainHeader, query: query);
       return response;
