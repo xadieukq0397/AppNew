@@ -263,7 +263,7 @@ class _LoginViewState extends State<LoginView> {
           //   print("After encode: " + passwordEncode);
           //   print("After encode: " + userNameEnCode);
 
-          Get.offNamed(Routes.getControlViewPage());
+          Get.offAllNamed(Routes.getControlViewPage());
         },
         // },
         // },

@@ -5,6 +5,7 @@ import 'package:responsive_login_ui/controller/checkout_controller.dart';
 import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:responsive_login_ui/views/widgets/select_address.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../controller/cart_controller.dart';
 import '../../routes/routes.dart';
 
 class AddressCheckOut extends StatelessWidget {
@@ -200,8 +201,8 @@ class AddressCheckOut extends StatelessWidget {
                         'province': _provinceController.text,
                         "pick_province": "Hà Nội",
                         "pick_district": "Thanh Xuân",
-                        "weight": "1000",
-                        "value": "300000",
+                        "weight": "${Get.find<CartController>().totalWeight}",
+                        "value": "${Get.find<CartController>().totalPrice}",
                         "deliver_option":
                             Get.find<CheckOutController>().selectXfast,
                       };

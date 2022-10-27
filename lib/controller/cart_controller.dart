@@ -17,6 +17,9 @@ class CartController extends GetxController {
   int _totalPrice = 0;
   int get totalPrice => _totalPrice;
 
+  int _totalWeight = 0;
+  int get totalWeight => _totalWeight;
+
   CartController({
     required this.cartRepo,
   });
@@ -37,7 +40,8 @@ class CartController extends GetxController {
         } else {
           _carts![i].quantity += 1;
           await cartRepo.updateCartToDB(_carts![i]);
-          await getTotalPrice(_carts);
+          await getTotalWeight(_carts);
+          getTotalPrice(_carts);
           return true;
         }
       }
@@ -58,7 +62,8 @@ class CartController extends GetxController {
     _carts!.add(cart);
     if (carts!.isNotEmpty) {
       await cartRepo.createCartToDB(carts: carts);
-      await getTotalPrice(_carts);
+      await getTotalWeight(_carts);
+      getTotalPrice(_carts);
       print("Create cart to DB");
     }
     update();
@@ -79,16 +84,27 @@ class CartController extends GetxController {
     _carts = [];
     _carts = await cartRepo.readAllCartFromDB();
     if (_carts != null) {
-      await getTotalPrice(_carts);
+      await getTotalWeight(_carts);
+      getTotalPrice(_carts);
     }
     _isLoading = false;
     update();
   }
 
-  Future<void> getTotalPrice(List<Cart>? carts) async {
+  void getTotalPrice(List<Cart>? carts) {
     _totalPrice = 0;
     for (var element in carts!) {
       _totalPrice += element.unitPrice! * element.quantity;
+    }
+    update();
+  }
+
+  Future<void> getTotalWeight(List<Cart>? carts) async {
+    _totalWeight = 0;
+    for (var element in carts!) {
+      Product? product = await Get.find<ProductController>()
+          .readProductByIdFromDB(element.productId);
+      _totalWeight += product!.weight! * element.quantity;
     }
     update();
   }
@@ -108,12 +124,17 @@ class CartController extends GetxController {
     _carts![index].quantity += 1;
     _totalPrice += _carts![index].unitPrice!;
     await cartRepo.updateCartToDB(_carts![index]);
+    _totalWeight += product.weight!;
     update();
   }
 
   Future<void> decrement(int index) async {
+    Product? product = await Get.find<ProductController>()
+        .readProductByIdFromDB(_carts![index].productId);
     _carts![index].quantity -= 1;
     _totalPrice -= _carts![index].unitPrice!;
+    _totalWeight -= product!.weight!;
+    print(_totalWeight);
     if (_carts![index].quantity == 0) {
       await cartRepo.deleteCartByIdFromDb(_carts![index].id!);
       _carts!.removeAt(index);

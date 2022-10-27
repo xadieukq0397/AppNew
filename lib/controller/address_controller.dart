@@ -78,7 +78,7 @@ class AddressController extends GetxController {
     if (provinces == null) {
       List<Province>? provincesFromJson =
           await readFileProvinceJson("lib/json_file/tinh_tp.json");
-      if (provinces!.isNotEmpty) {
+      if (provincesFromJson!.isNotEmpty) {
         await addressRepo.createProvincesToDB(provinces: provincesFromJson);
         print("Created provinces to DB");
       }
