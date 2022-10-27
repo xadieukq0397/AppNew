@@ -94,7 +94,6 @@ class ProductController extends GetxController {
         weight: 500,
       ),
     ];
-
     if (products.isNotEmpty) {
       await productRepo.createProductToDB(products: products);
       print("Create product to DB");

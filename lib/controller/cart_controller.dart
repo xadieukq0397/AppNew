@@ -37,6 +37,7 @@ class CartController extends GetxController {
         } else {
           _carts![i].quantity += 1;
           await cartRepo.updateCartToDB(_carts![i]);
+          await getTotalPrice(_carts);
           return true;
         }
       }
@@ -57,6 +58,7 @@ class CartController extends GetxController {
     _carts!.add(cart);
     if (carts!.isNotEmpty) {
       await cartRepo.createCartToDB(carts: carts);
+      await getTotalPrice(_carts);
       print("Create cart to DB");
     }
     update();
@@ -88,6 +90,7 @@ class CartController extends GetxController {
     for (var element in carts!) {
       _totalPrice += element.unitPrice! * element.quantity;
     }
+    print(totalPrice);
     update();
   }
 
