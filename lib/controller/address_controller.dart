@@ -74,11 +74,16 @@ class AddressController extends GetxController {
 
   // Processed database
   Future<void> createProvincesToDB() async {
-    List<Province>? provinces =
-        await readFileProvinceJson("lib/json_file/tinh_tp.json");
-    if (provinces!.isNotEmpty) {
-      await addressRepo.createProvincesToDB(provinces: provinces);
-      print("Created provinces to DB");
+    List<Province>? provinces = await addressRepo.readAllProvincesFromDB();
+    if (provinces == null) {
+      List<Province>? provincesFromJson =
+          await readFileProvinceJson("lib/json_file/tinh_tp.json");
+      if (provinces!.isNotEmpty) {
+        await addressRepo.createProvincesToDB(provinces: provincesFromJson);
+        print("Created provinces to DB");
+      }
+    } else {
+      print("Don't read from json file");
     }
   }
 

@@ -60,5 +60,6 @@
     "notSelectTransport": "Bạn chưa chọn phương thức vận chuyển",
     "selectTransport": "Vui lòng chọn một phương thức vận chuyển",
     "notSelectOrderBy": "Bạn chưa chọn cách thức đặt hàng",
-    "selectOrderBy": "Vui lòng chọn một cách thức đặt hàng"
+    "selectOrderBy": "Vui lòng chọn một cách thức đặt hàng",
+    "selectXfast": "XFAST"
 }

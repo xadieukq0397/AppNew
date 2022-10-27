@@ -5,22 +5,29 @@ class CheckOutController extends GetxController {
   String? selectTypeDelivery;
   String? billCode;
   String? addressGuess;
+  String? selectXfast;
+  bool? isSelected = false;
 
-  onChangedTransport(var transport) {
+  void onChangedTransport(var transport) {
     selectTransport = transport;
     update();
     print(transport);
   }
 
-  onChangedDelivery(var delivery) {
+  void onChangedDelivery(var delivery) {
     selectTypeDelivery = delivery;
     update();
     print(delivery);
   }
 
-  onChangedBillCode(var billText) {
+  void onChangedBillCode(var billText) {
     billCode = billText;
     update();
     print(billText);
+  }
+
+  void onSelectXfast(bool value) {
+    selectXfast = value ? 'xteam' : "none";
+    update();
   }
 }

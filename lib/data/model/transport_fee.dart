@@ -23,8 +23,8 @@ class Fee {
   final String? name;
   final int? fee;
   final int? insurance_fee;
-  final String? include_vat;
-  final String? cost_id;
+  final dynamic include_vat;
+  final dynamic cost_id;
   final String? delivery_type;
   final String? a;
   final String? dt;

@@ -90,7 +90,6 @@ class CartController extends GetxController {
     for (var element in carts!) {
       _totalPrice += element.unitPrice! * element.quantity;
     }
-    print(totalPrice);
     update();
   }
 

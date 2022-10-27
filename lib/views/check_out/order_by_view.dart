@@ -17,7 +17,6 @@ class AddressCheckOut extends StatelessWidget {
     TextEditingController _wardController = TextEditingController();
     TextEditingController _villageController = TextEditingController();
     TextEditingController _billCodeController = TextEditingController();
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -78,26 +77,47 @@ class AddressCheckOut extends StatelessWidget {
                         groupValue: checkOutController.selectTypeDelivery,
                         onChanged: (value) {
                           checkOutController.onChangedDelivery(value);
+                          checkOutController.isSelected = false;
+                          checkOutController.selectXfast = 'none';
                         },
                       ),
                       Text(AppLocalizations.of(context)!.titleCustomerAddress),
                     ],
                   ),
                   checkOutController.selectTypeDelivery == "address"
-                      ? SelectAddress(
-                          provinceController: _provinceController,
-                          districtController: _districtController,
-                          wardController: _wardController,
-                          villageController: _villageController,
-                          distance: 5,
+                      ? Column(
+                          children: [
+                            SelectAddress(
+                              provinceController: _provinceController,
+                              districtController: _districtController,
+                              wardController: _wardController,
+                              villageController: _villageController,
+                              distance: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Checkbox(
+                                  checkColor: Colors.white,
+                                  value: checkOutController.isSelected,
+                                  onChanged: (bool? value) {
+                                    checkOutController.isSelected = value!;
+                                    checkOutController.onSelectXfast(value);
+                                  },
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.selectXfast,
+                                ),
+                                const SizedBox(width: 18),
+                              ],
+                            ),
+                          ],
                         )
-                      : const SizedBox(
-                          height: 15,
-                        ),
+                      : const SizedBox(height: 20),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
             GetBuilder<OrderController>(builder: (orderController) {
               return GestureDetector(
                 onTap: () {
@@ -182,7 +202,8 @@ class AddressCheckOut extends StatelessWidget {
                         "pick_district": "Thanh Xuân",
                         "weight": "1000",
                         "value": "300000",
-                        "deliver_option": "none",
+                        "deliver_option":
+                            Get.find<CheckOutController>().selectXfast,
                       };
                       Get.toNamed(Routes.getControlViewPage());
                       orderController.getDataTransportFee();

@@ -251,5 +251,9 @@
   "selectOrderBy": "Please select an Order by",
   "@SelectTransport": {
     "description": "select Order by"
+  },
+  "selectXfast": "XFAST",
+  "@selectXfast": {
+    "description": "select Xfast"
   }
 }
