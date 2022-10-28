@@ -4,6 +4,7 @@ import 'package:responsive_login_ui/views/cart_view.dart';
 import 'package:responsive_login_ui/views/check_out/select_transport_view.dart';
 import 'package:responsive_login_ui/views/home_view.dart';
 import 'package:responsive_login_ui/views/login_view.dart';
+import 'package:responsive_login_ui/views/order/order_detail.dart';
 import 'package:responsive_login_ui/views/signup_view.dart';
 import 'package:responsive_login_ui/views/controller_view.dart';
 
@@ -18,6 +19,7 @@ class Routes {
   static const String cart = '/cart';
   static const String transport = '/transport';
   static const String delivery = '/delivery';
+  static const String orderDetail = '/orderdetail';
   static String getLoginPage() => '$login';
   static String getSignUpPage() => '$signUp';
   static String getAddressPage() => '$address';
@@ -26,6 +28,7 @@ class Routes {
   static String getCartViewPage() => '$cart';
   static String getSelectTransportPage() => '$transport';
   static String getSelectDeliveryPage() => '$delivery';
+  static String getorderDetailPage() => '$orderDetail';
   static List<GetPage> listRoutes = [
     GetPage(name: login, page: () => const LoginView()),
     GetPage(name: signUp, page: () => const SignUpView()),
@@ -35,5 +38,6 @@ class Routes {
     GetPage(name: cart, page: () => const CartView()),
     GetPage(name: transport, page: () => const SelectTransport()),
     GetPage(name: delivery, page: () => const AddressCheckOut()),
+    GetPage(name: orderDetail, page: () => const OrderDetail()),
   ];
 }

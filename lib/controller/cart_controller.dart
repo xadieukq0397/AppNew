@@ -14,8 +14,8 @@ class CartController extends GetxController {
   List<Cart>? _carts = [];
   List<Cart>? get carts => _carts;
 
-  int _totalPrice = 0;
-  int get totalPrice => _totalPrice;
+  int _subTotalPrice = 0;
+  int get subTotalPrice => _subTotalPrice;
 
   int _totalWeight = 0;
   int get totalWeight => _totalWeight;
@@ -92,9 +92,9 @@ class CartController extends GetxController {
   }
 
   void getTotalPrice(List<Cart>? carts) {
-    _totalPrice = 0;
+    _subTotalPrice = 0;
     for (var element in carts!) {
-      _totalPrice += element.unitPrice! * element.quantity;
+      _subTotalPrice += element.unitPrice! * element.quantity;
     }
     update();
   }
@@ -122,7 +122,7 @@ class CartController extends GetxController {
       return;
     }
     _carts![index].quantity += 1;
-    _totalPrice += _carts![index].unitPrice!;
+    _subTotalPrice += _carts![index].unitPrice!;
     await cartRepo.updateCartToDB(_carts![index]);
     _totalWeight += product.weight!;
     update();
@@ -132,7 +132,7 @@ class CartController extends GetxController {
     Product? product = await Get.find<ProductController>()
         .readProductByIdFromDB(_carts![index].productId);
     _carts![index].quantity -= 1;
-    _totalPrice -= _carts![index].unitPrice!;
+    _subTotalPrice -= _carts![index].unitPrice!;
     _totalWeight -= product!.weight!;
     print(_totalWeight);
     if (_carts![index].quantity == 0) {

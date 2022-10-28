@@ -132,28 +132,32 @@ class AddressCheckOut extends StatelessWidget {
                       'address') {
                     if (_provinceController.text.trim().isEmpty) {
                       Get.snackbar(
-                          AppLocalizations.of(context)!.notSelectProvinceOne,
-                          AppLocalizations.of(context)!.notSelectProvinceTwo,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white);
+                        AppLocalizations.of(context)!.notSelectProvinceOne,
+                        AppLocalizations.of(context)!.notSelectProvinceTwo,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
                     } else if (_districtController.text.trim().isEmpty) {
                       Get.snackbar(
-                          AppLocalizations.of(context)!.notSelectDistrictOne,
-                          AppLocalizations.of(context)!.notSelectDistrictTwo,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white);
+                        AppLocalizations.of(context)!.notSelectDistrictOne,
+                        AppLocalizations.of(context)!.notSelectDistrictTwo,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
                     } else if (_wardController.text.trim().isEmpty) {
                       Get.snackbar(
-                          AppLocalizations.of(context)!.notSelectWardOne,
-                          AppLocalizations.of(context)!.notSelectWardTwo,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white);
+                        AppLocalizations.of(context)!.notSelectWardOne,
+                        AppLocalizations.of(context)!.notSelectWardTwo,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
                     } else if (_villageController.text.trim().isEmpty) {
                       Get.snackbar(
-                          AppLocalizations.of(context)!.notSelectVillageOne,
-                          AppLocalizations.of(context)!.notSelectVillageOne,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white);
+                        AppLocalizations.of(context)!.notSelectVillageOne,
+                        AppLocalizations.of(context)!.notSelectVillageOne,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
                     } else if (Get.find<AddressController>().provinceType ==
                         null) {
                       Get.snackbar(
@@ -202,7 +206,7 @@ class AddressCheckOut extends StatelessWidget {
                         "pick_province": "Hà Nội",
                         "pick_district": "Thanh Xuân",
                         "weight": "${Get.find<CartController>().totalWeight}",
-                        "value": "${Get.find<CartController>().totalPrice}",
+                        "value": "${Get.find<CartController>().subTotalPrice}",
                         "deliver_option":
                             Get.find<CheckOutController>().selectXfast,
                       };
