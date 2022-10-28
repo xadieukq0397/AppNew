@@ -39,7 +39,7 @@ class CartView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
-                              'assets/empty_cart.png',
+                              'assets/images/empty_cart.png',
                               height: 200,
                               width: 200,
                             ),
