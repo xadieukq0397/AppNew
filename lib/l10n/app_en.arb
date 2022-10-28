@@ -255,5 +255,41 @@
   "selectXfast": "XFAST",
   "@selectXfast": {
     "description": "select Xfast"
+  },
+  "titleOrderDetail": "ORDER DETAIL",
+  "@titleOrderDetail": {
+    "description": "Titla order detail page"
+  },
+  "paymentTabbar": "Payment",
+  "@paymentTabbar": {
+    "description": "Text in Tabbar"
+  },
+  "customerTabbar": "Customer",
+  "@customerTabbar": {
+    "description": "Custom's infor in Tabbar"
+  },
+  "subTotalOrder": "Subtotal",
+  "@subTotalOrder": {
+    "description": "Subtotal in order page"
+  },
+  "transportFeeOrder": "Transport Fee",
+  "@transportFeeOrder": {
+    "description": "transport Fee in order page"
+  },
+  "totalOrder": "Total",
+  "@totalOrder": {
+    "description": "Total in order page"
+  },
+  "customerName": "Customer's Name",
+  "@customName": {
+    "description": "Customer's name in order page"
+  },
+  "phoneNumber": "Phone Number",
+  "@phoneNumber": {
+    "description": "Phone number in order page"
+  },
+  "addressCustomer": " Customer's Address",
+  "@addressCustom": {
+    "description": "Customer's address in order page"
   }
 }

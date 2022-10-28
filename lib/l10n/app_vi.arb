@@ -61,5 +61,14 @@
     "selectTransport": "Vui lòng chọn một phương thức vận chuyển",
     "notSelectOrderBy": "Bạn chưa chọn cách thức đặt hàng",
     "selectOrderBy": "Vui lòng chọn một cách thức đặt hàng",
-    "selectXfast": "XFAST"
+    "selectXfast": "XFAST",
+    "titleOrderDetail": "ĐƠN HÀNG",
+    "paymentTabbar": "Thanh toán",
+    "customerTabbar": "Khách hàng",
+    "subTotalOrder": "Tổng sản phẩm",
+    "transportFeeOrder": "Phí vận chuyển",
+    "totalOrder": "Tổng giá",
+    "customerName": "Tên khách hàng",
+    "phoneNumber": "Số điện thoại",
+    "addressCustomer": " Địa chỉ người nhận"
 }

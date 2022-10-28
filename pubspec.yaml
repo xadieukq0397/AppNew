@@ -34,7 +34,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/
+    - assets/images/
     - lib/json_file/
     - lib/json_file/quan-huyen/
     - lib/json_file/xa-phuong/

@@ -165,7 +165,7 @@ class CartView extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 10),
                                       Text(
-                                        cartController.totalPrice.toString(),
+                                        cartController.subTotalPrice.toString(),
                                         style: const TextStyle(
                                             color: Colors.green),
                                       ),

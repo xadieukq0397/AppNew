@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/data/model/transport_fee.dart';
 import 'package:responsive_login_ui/data/repository/order_repo.dart';
@@ -12,6 +11,12 @@ class OrderController extends GetxController {
   List<Order> _orders = [];
   List<Order> get orders => _orders;
   Map<String, dynamic> _query = {};
+
+  bool _isChangeState = false;
+  bool get isChangeState => _isChangeState;
+
+  int _stateIndex = 0;
+  int get stateIndex => _stateIndex;
 
   set query(Map<String, dynamic> value) {
     _query = value;
@@ -109,5 +114,13 @@ class OrderController extends GetxController {
 
   void clear() {
     _query = {};
+  }
+
+  void changeColor(int index) {
+    if (_stateIndex != index) {
+      _stateIndex = index;
+      _isChangeState = !_isChangeState;
+    }
+    update();
   }
 }
