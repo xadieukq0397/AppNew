@@ -29,29 +29,8 @@ TextStyle kTextFormFieldStyle() => const TextStyle(color: Colors.black);
 TextStyle kProductStyle(Size size) => GoogleFonts.ubuntu(
       fontSize: size.height * 0.017,
     );
-const List<String> lImgProduct = [
-  "https://cf.shopee.vn/file/4d6ca89f6bf93fa3997357451f78f097_tn",
-  "https://cf.shopee.vn/file/77a05996c39ac02f7f4b3bd8441d098d",
-  "https://cf.shopee.vn/file/0982de1d517eed28495a9bbcaced5881",
-  "https://cf.shopee.vn/file/26635c69cd0f47fbd86150bbb8a43aa3",
-  "https://cf.shopee.vn/file/eec429a0d94f03ae15a821228e009c87"
-];
-const List<String> lNameProduct = [
-  "Bộ Quần Áo Mưa Chống Thấm Nước Đi Xe Máy Dành Cho Nam Và Nữ",
-  "Đồng hồ thông minh Samsung Galaxy Watch 5/ Watch 5",
-  "Apple iPhone 14 Plus 512 GB - Hàng chính hãng",
-  "[Galaxy S22 Ultra] Điện thoại Samsung Galaxy S22 Ultra - Hàng chính hãng",
-  "[Galaxy Buds 2 Pro ] Tai nghe Samsung Galaxy Buds 2 Pro - Hàng chính hãng"
-];
-const List<String> lPriceProduct = [
-  "152.000",
-  "3.150.000",
-  "30.000.000",
-  "21.000.000",
-  "2.500.000"
-];
-const List<String> lSaledProduct = ["125", "15", "25", "30", "10"];
-const String saledName = "Đã bán ";
+
+const String saledName = "Hàng trong kho ";
 const Color yellowColor = Color(0xfffed813); //Yellow
 
 const Color activeCyanColor = Color(0xff0a7c97);
