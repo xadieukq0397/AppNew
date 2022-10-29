@@ -22,9 +22,9 @@ class OrderDetail extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                          color: Colors.black,
-                          width: 2,
-                          strokeAlign: StrokeAlign.inside),
+                        color: Colors.black,
+                        width: 2,
+                      ),
                       shape: BoxShape.circle,
                     ),
                     width: 25,

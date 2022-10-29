@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: L10n.all,
-      initialRoute: Routes.getLoginPage(),
+      initialRoute: Routes.getOrdersHistory(),
       getPages: Routes.listRoutes,
       initialBinding: AllBindings(),
     );
