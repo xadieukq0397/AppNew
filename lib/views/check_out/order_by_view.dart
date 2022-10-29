@@ -282,10 +282,9 @@ class AddressCheckOut extends StatelessWidget {
                               "${_wardController.text}, "
                               "${_districtController.text}, "
                               "${_provinceController.text}";
-                          await orderController.getDataTransportFee();
-                          await orderController.createOrderToDB();
-                          await orderController.readAllOrderFromDB();
-                          Get.toNamed(Routes.getControlViewPage());
+                          await orderController.createAnOrder();
+                          Get.delete<ControlViewController>();
+                          Get.offAllNamed(Routes.getControlViewPage());
                         }
                       } else if (Get.find<CheckOutController>()
                               .selectTypeDelivery ==

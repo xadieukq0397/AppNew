@@ -87,16 +87,17 @@ class OrdersHistory extends StatelessWidget {
                                           height: 10,
                                         ),
                                         Text(
-                                            intl.DateFormat(
-                                                    'dd-MM-yyyy kk:mm:ss ')
-                                                .format(
-                                              DateTime.now(),
-                                            ),
-                                            style: TextStyle(
-                                                fontSize:
-                                                    kProductStyle(size * 1.5)
-                                                        .fontSize,
-                                                color: Colors.grey)),
+                                          intl.DateFormat(
+                                                  'dd-MM-yyyy kk:mm:ss ')
+                                              .format(
+                                            DateTime.now(),
+                                          ),
+                                          style: TextStyle(
+                                              fontSize:
+                                                  kProductStyle(size * 1.5)
+                                                      .fontSize,
+                                              color: Colors.grey),
+                                        ),
                                         const SizedBox(
                                           height: 20,
                                         ),

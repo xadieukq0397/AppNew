@@ -45,7 +45,7 @@ class CartController extends GetxController {
           return false;
         } else {
           _carts![i].quantity += 1;
-          await cartRepo.updateCartToDB(_carts![i]);
+          await updateCartToDB(_carts![i]);
           await getTotalWeight(_carts);
           getTotalPrice(_carts);
           return true;
@@ -65,6 +65,7 @@ class CartController extends GetxController {
       productName: product.name,
       unitPrice: product.price,
       quantity: 1,
+      isExisted: 'false',
     );
     _carts!.add(cart);
     if (carts!.isNotEmpty) {
@@ -86,15 +87,22 @@ class CartController extends GetxController {
     update();
   }
 
-  Future<void> readAllCartFromDB() async {
+  Future<List<Cart>?> readAllCartIsNotExitedFromDB() async {
     _isLoading = true;
     _carts = [];
-    _carts = await cartRepo.readAllCartFromDB();
+    _carts = await cartRepo.readAllCartIsNotExistedFromDB();
     if (_carts != null) {
       await getTotalWeight(_carts);
       getTotalPrice(_carts);
     }
+    await getOrderIdFromDB();
     _isLoading = false;
+    update();
+    return _carts;
+  }
+
+  Future<void> updateCartToDB(Cart cart) async {
+    await cartRepo.updateCartToDB(cart);
     update();
   }
 
@@ -130,7 +138,7 @@ class CartController extends GetxController {
     }
     _carts![index].quantity += 1;
     _subTotalPrice += _carts![index].unitPrice!;
-    await cartRepo.updateCartToDB(_carts![index]);
+    await updateCartToDB(_carts![index]);
     _totalWeight += product.weight!;
     update();
   }
@@ -146,7 +154,7 @@ class CartController extends GetxController {
       _carts!.removeAt(index);
       print("Delete product");
     } else {
-      await cartRepo.updateCartToDB(_carts![index]);
+      await updateCartToDB(_carts![index]);
     }
     update();
   }
@@ -161,7 +169,6 @@ class CartController extends GetxController {
       listOrders = [];
       _orderId = "${listOrders.length + 1}";
     }
-    print(_orderId);
     update();
   }
 }

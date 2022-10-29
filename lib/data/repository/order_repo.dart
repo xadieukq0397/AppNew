@@ -20,8 +20,8 @@ class OrderRepo {
 
   //Database
   Future<void> createOrderToDB({Order? order}) async {
-    Order? _order = await readOrderByIDFromDB(id: order!.id);
-    if (_order == null) {
+    Order? orderCa = await readOrderByIDFromDB(id: order!.id);
+    if (orderCa == null) {
       await StorageDatabase.instance.createOrderToDB(order);
     }
   }

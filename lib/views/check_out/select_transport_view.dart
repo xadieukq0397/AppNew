@@ -27,6 +27,7 @@ class SelectTransport extends StatelessWidget {
             ),
           ),
           GetBuilder<CheckOutController>(
+            init: CheckOutController(),
             builder: (checkOutController) => Column(
               children: [
                 Row(

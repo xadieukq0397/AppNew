@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/controller_view_controller.dart';
-import 'package:responsive_login_ui/controller/order_controller.dart';
 import '../config/ui_constants.dart';
 import '../controller/cart_controller.dart';
+import '../controller/order_controller.dart';
 
 class ControlView extends StatelessWidget {
   const ControlView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.find<OrderController>().isCreated
-        ? null
-        : Get.find<CartController>().readAllCartFromDB();
+    Get.find<CartController>().readAllCartIsNotExitedFromDB();
+    Get.find<OrderController>().readAllOrderFromDB();
     return Scaffold(
       body: GetBuilder<ControlViewController>(
         init: ControlViewController(),

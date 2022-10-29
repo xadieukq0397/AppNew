@@ -13,20 +13,20 @@ import 'package:responsive_login_ui/data/repository/cart_repo.dart';
 import 'package:responsive_login_ui/data/repository/order_repo.dart';
 import 'package:responsive_login_ui/data/repository/product_repo.dart';
 
-class AllBindings extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => ApiGHTK(baseUrlGHTK: AppConstants.baseUrlGHTK));
-    Get.lazyPut(() => AuthController());
-    Get.lazyPut(() => AddressRepo());
-    Get.lazyPut(() => AddressController(addressRepo: Get.find()));
-    Get.lazyPut(() => ProductRepo());
-    Get.lazyPut(() => ProductController(productRepo: Get.find()));
-    Get.lazyPut(() => CartRepo());
-    Get.lazyPut(() => CartController(cartRepo: Get.find()));
-    Get.lazyPut(() => OrderRepo(apiGHTK: Get.find()));
-    Get.lazyPut(() => OrderController(orderRepo: Get.find()));
-    Get.lazyPut(() => CheckOutController());
-    Get.lazyPut(() => OrdersHistoryController());
-  }
+// class AllBindings extends Bindings {
+//   @override
+Future<void> init() async {
+  Get.lazyPut(() => ApiGHTK(baseUrlGHTK: AppConstants.baseUrlGHTK));
+  Get.lazyPut(() => AuthController());
+  Get.lazyPut(() => AddressRepo());
+  Get.lazyPut(() => AddressController(addressRepo: Get.find()));
+  Get.lazyPut(() => ProductRepo());
+  Get.lazyPut(() => ProductController(productRepo: Get.find()));
+  Get.lazyPut(() => CartRepo());
+  Get.lazyPut(() => CartController(cartRepo: Get.find()));
+  Get.lazyPut(() => OrderRepo(apiGHTK: Get.find()));
+  Get.lazyPut(() => OrderController(orderRepo: Get.find()));
+  Get.lazyPut(() => CheckOutController());
+  Get.lazyPut(() => OrdersHistoryController());
 }
+// }

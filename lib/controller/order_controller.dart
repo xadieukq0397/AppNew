@@ -4,6 +4,7 @@ import 'package:responsive_login_ui/controller/cart_controller.dart';
 import 'package:responsive_login_ui/data/model/transport_fee.dart';
 import 'package:responsive_login_ui/data/repository/order_repo.dart';
 
+import '../data/model/cart.dart';
 import '../data/model/order.dart';
 
 class OrderController extends GetxController {
@@ -24,9 +25,6 @@ class OrderController extends GetxController {
     _query = value;
     update();
   }
-
-  bool _isCreated = false;
-  bool get isCreated => _isCreated;
 
   String? _customerName;
   set customerName(String value) {
@@ -90,7 +88,6 @@ class OrderController extends GetxController {
   // Database
   Future<void> createOrderToDB() async {
     int? maxId;
-    await readAllOrderFromDB();
     Order order = Order(
       id: Get.find<CartController>().orderId,
       userId: '1',
@@ -107,7 +104,26 @@ class OrderController extends GetxController {
     await orderRepo.createOrderToDB(order: order);
     print("Create order to DB");
     _isLoading = false;
-    _isCreated = true;
+
+    update();
+  }
+
+  Future<void> createAnOrder() async {
+    await getDataTransportFee();
+    await createOrderToDB();
+    await updateListCartIsNotExist();
+  }
+
+  Future<void> updateListCartIsNotExist() async {
+    List<Cart>? listCarts =
+        await Get.find<CartController>().readAllCartIsNotExitedFromDB();
+
+    if (listCarts != null) {
+      for (var cart in listCarts) {
+        cart.isExisted = 'true';
+        await Get.find<CartController>().updateCartToDB(cart);
+      }
+    }
     update();
   }
 

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:responsive_login_ui/controller/cart_controller.dart';
+import 'package:responsive_login_ui/controller/order_controller.dart';
+import 'package:responsive_login_ui/controller/product_controller.dart';
 import 'package:responsive_login_ui/l10n/l10n.dart';
 import 'package:responsive_login_ui/routes/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'bindings/all_bindings.dart';
+import 'bindings/all_bindings.dart' as dep;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
@@ -16,18 +20,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: L10n.all,
-      initialRoute: Routes.getOrdersHistory(),
-      getPages: Routes.listRoutes,
-      initialBinding: AllBindings(),
+    return GetBuilder<ProductController>(
+      builder: (_) => GetBuilder<CartController>(
+        builder: (_) => GetBuilder<OrderController>(
+          builder: (_) => GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate
+            ],
+            supportedLocales: L10n.all,
+            initialRoute: Routes.getLoginPage(),
+            getPages: Routes.listRoutes,
+          ),
+        ),
+      ),
     );
   }
 }
