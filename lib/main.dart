@@ -3,10 +3,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/l10n/l10n.dart';
 import 'package:responsive_login_ui/routes/routes.dart';
-import 'bindings/all_bindings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'bindings/all_bindings.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
