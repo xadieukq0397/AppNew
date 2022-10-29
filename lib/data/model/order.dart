@@ -5,6 +5,7 @@ class OrderField {
     id,
     userId,
     totalPrice,
+    transportFee,
     time,
     customerName,
     phoneCustomer,
@@ -15,6 +16,7 @@ class OrderField {
   static final String id = 'id';
   static final String userId = 'userId';
   static final String totalPrice = 'totalPrice';
+  static final String transportFee = 'transportFee';
   static final String time = 'time';
   static final String customerName = 'customerName';
   static final String phoneCustomer = 'phoneCustomer';
@@ -27,6 +29,7 @@ class Order {
   final String? id;
   final String? userId;
   final int? totalPrice;
+  final int? transportFee;
   final String? time;
   final String? customerName;
   final String? phoneCustomer;
@@ -44,12 +47,14 @@ class Order {
     required this.addressCustomer,
     required this.transportCode,
     required this.statusOrder,
+    required this.transportFee,
   });
 
   static Order fromJson(Map<String, dynamic> json) => Order(
         id: json['id'],
         userId: json['userId'],
         totalPrice: json['totalPrice'],
+        transportFee: json['transportFee'],
         time: json['time'],
         customerName: json['customerName'],
         phoneCustomer: json['phoneCustomer'],
@@ -62,6 +67,7 @@ class Order {
         'id': id,
         'userId': userId,
         'totalPrice': totalPrice,
+        'transportFee': transportFee,
         'time': time,
         'customerName': customerName,
         'phoneCustomer': phoneCustomer,

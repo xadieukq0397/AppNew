@@ -54,7 +54,7 @@
     "titleBillCode": "Mã vận đơn",
     "textFieldBillCode": "Nhập mã vận đơn",
     "titleCustomerAddress": "Địa chỉ khách hàng",
-    "orderButton": "Đặt hàng",
+    "orderButton": "Tạo đơn hàng",
     "notEnterBillCodeOne": "Bạn chưa nhập mã vận đơn",
     "notEnterBillCodeTwo": "Vui lòng nhập mã vận đơn",
     "notSelectTransport": "Bạn chưa chọn phương thức vận chuyển",
@@ -70,5 +70,9 @@
     "totalOrder": "Tổng giá",
     "customerName": "Tên khách hàng",
     "phoneNumber": "Số điện thoại",
-    "addressCustomer": " Địa chỉ người nhận"
+    "addressCustomer": " Địa chỉ người nhận",
+    "errorCustomerName": "Bạn chưa điền tên khách hàng",
+    "enterCustomerName": "Hãy điền tên khách hàng",
+    "errorphoneCustomer": "Bạn chưa điền số điện thoại",
+    "enterPhoneCustomer": "Hãy điền số điện thoại"
 }
