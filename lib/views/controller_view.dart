@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/controller_view_controller.dart';
+import 'package:responsive_login_ui/controller/order_controller.dart';
 import '../config/ui_constants.dart';
 import '../controller/cart_controller.dart';
 
@@ -9,7 +10,9 @@ class ControlView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<CartController>().readAllCartFromDB();
+    Get.find<OrderController>().isCreated
+        ? null
+        : Get.find<CartController>().readAllCartFromDB();
     return Scaffold(
       body: GetBuilder<ControlViewController>(
         init: ControlViewController(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_login_ui/controller/controller_view_controller.dart';
 import '../config/ui_constants.dart';
 import '../controller/auth_controller.dart';
 import '../routes/routes.dart';
@@ -17,7 +18,6 @@ class _LoginViewState extends State<LoginView> {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -248,7 +248,7 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ),
-        onPressed: () {
+        onPressed: () async {
           // Validate returns true if the form is valid, or false otherwise.
           // if (_formKey.currentState!.validate()) {
           //   String userName = nameController.text.trim();
@@ -262,7 +262,6 @@ class _LoginViewState extends State<LoginView> {
 
           //   print("After encode: " + passwordEncode);
           //   print("After encode: " + userNameEnCode);
-
           Get.offAllNamed(Routes.getControlViewPage());
         },
         // },

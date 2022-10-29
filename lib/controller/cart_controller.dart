@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:responsive_login_ui/controller/product_controller.dart';
 import 'package:responsive_login_ui/data/model/cart.dart';
 import 'package:responsive_login_ui/data/model/product.dart';
 import 'package:responsive_login_ui/data/repository/cart_repo.dart';
+
+import '../data/model/order.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
@@ -19,6 +22,9 @@ class CartController extends GetxController {
 
   int _totalWeight = 0;
   int get totalWeight => _totalWeight;
+
+  String? _orderId;
+  String? get orderId => _orderId;
 
   CartController({
     required this.cartRepo,
@@ -46,6 +52,7 @@ class CartController extends GetxController {
         }
       }
     }
+    await getOrderIdFromDB();
     List<Cart>? listCarts = await cartRepo.readAllCartFromDB();
     if (listCarts != null) {
       listCarts.sort((a, b) => int.parse(a.id!) - int.parse(b.id!));
@@ -54,7 +61,7 @@ class CartController extends GetxController {
     Cart cart = Cart(
       id: _carts!.isEmpty ? '${carts!.length + 1}' : '${maxId! + 1}',
       productId: product.id,
-      orderId: '1',
+      orderId: _orderId,
       productName: product.name,
       unitPrice: product.price,
       quantity: 1,
@@ -134,7 +141,6 @@ class CartController extends GetxController {
     _carts![index].quantity -= 1;
     _subTotalPrice -= _carts![index].unitPrice!;
     _totalWeight -= product!.weight!;
-    print(_totalWeight);
     if (_carts![index].quantity == 0) {
       await cartRepo.deleteCartByIdFromDb(_carts![index].id!);
       _carts!.removeAt(index);
@@ -142,6 +148,20 @@ class CartController extends GetxController {
     } else {
       await cartRepo.updateCartToDB(_carts![index]);
     }
+    update();
+  }
+
+  Future<void> getOrderIdFromDB() async {
+    List<Order>? listOrders =
+        await Get.find<OrderController>().readAllOrderFromDB();
+    if (listOrders != null) {
+      listOrders.sort((a, b) => int.parse(a.id!) - int.parse(b.id!));
+      _orderId = "${int.parse(listOrders.last.id!) + 1}";
+    } else {
+      listOrders = [];
+      _orderId = "${listOrders.length + 1}";
+    }
+    print(_orderId);
     update();
   }
 }

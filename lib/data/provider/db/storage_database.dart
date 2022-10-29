@@ -34,6 +34,7 @@ class StorageDatabase {
     final parent_id = 'TEXT NOT NULL';
     final userId = 'TEXT NOT NULL';
     final totalPrice = 'INTERGER NOT NULL';
+    final transportFee = 'INTERGER NOT NULL';
     final time = 'TEXT NOT NULL';
     final image = 'TEXT NOT NULL';
     final decription = 'TEXT NOT NULL';
@@ -99,6 +100,7 @@ CREATE TABLE $tableOrder(
   ${OrderField.id} $id,
   ${OrderField.userId} $userId,
   ${OrderField.totalPrice} $totalPrice,
+  ${OrderField.transportFee} $transportFee,
   ${OrderField.time} $time,
   ${OrderField.customerName} $customerName,
   ${OrderField.phoneCustomer} $phoneCustomer,

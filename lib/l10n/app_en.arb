@@ -288,8 +288,24 @@
   "@phoneNumber": {
     "description": "Phone number in order page"
   },
-  "addressCustomer": " Customer's Address",
+  "addressCustomer": "Customer's Address",
   "@addressCustom": {
+    "description": "Customer's address in order page"
+  },
+  "errorCustomerName": "You have not entered Customer's name",
+  "@errorCustomerName": {
+    "description": "Customer's address in order page"
+  },
+  "enterCustomerName": "Please enter Customer' name",
+  "@enterCustomerName": {
+    "description": "Customer's address in order page"
+  },
+  "errorphoneCustomer": "You have not entered Customer's phone number",
+  "@errorphoneCustomer": {
+    "description": "Customer's address in order page"
+  },
+  "enterPhoneCustomer": "Please enter Customer' phone number",
+  "@enterPhoneCustomer": {
     "description": "Customer's address in order page"
   }
 }
