@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../config/ui_constants.dart';
 import '../controller/auth_controller.dart';
-import '../controller/order_controller.dart';
-import '../controller/product_controller.dart';
 import '../routes/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
