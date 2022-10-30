@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/cart_controller.dart';
 import 'package:responsive_login_ui/data/model/transport_fee.dart';
 import 'package:responsive_login_ui/data/repository/order_repo.dart';
-
 import '../data/model/cart.dart';
 import '../data/model/order.dart';
 
@@ -65,7 +64,6 @@ class OrderController extends GetxController {
         _transportFee = TransportFee.fromJson(result);
         print('got transport fee');
         print('------------------------' + _transportFee!.fee!.fee.toString());
-        clear();
       } else {
         print("Not got transport Free");
       }
@@ -117,7 +115,6 @@ class OrderController extends GetxController {
   Future<void> updateListCartIsNotExist() async {
     List<Cart>? listCarts =
         await Get.find<CartController>().readAllCartIsNotExitedFromDB();
-
     if (listCarts != null) {
       for (var cart in listCarts) {
         cart.isExisted = 'true';
@@ -139,11 +136,6 @@ class OrderController extends GetxController {
     } else {
       return null;
     }
-  }
-
-  void clear() {
-    _query = {};
-    update();
   }
 
   void changeColor(int index) {

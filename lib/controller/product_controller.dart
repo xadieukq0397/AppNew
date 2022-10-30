@@ -16,7 +16,7 @@ class ProductController extends GetxController {
   ProductController({required this.productRepo});
 
   Future<void> createProductToDB() async {
-    List<Product>? products = [
+    List<Product>? listproducts = [
       Product(
         id: '1',
         name: "Bộ Quần Áo Mưa Chống Thấm Nước Đi Xe Máy Dành Cho Nam Và Nữ",
@@ -94,7 +94,7 @@ class ProductController extends GetxController {
         weight: 500,
       ),
     ];
-    if (products.isNotEmpty) {
+    if (listproducts.isNotEmpty) {
       await productRepo.createProductToDB(products: products);
       print("Create product to DB");
     }

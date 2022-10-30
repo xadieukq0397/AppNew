@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_login_ui/controller/cart_controller.dart';
 import 'package:responsive_login_ui/views/order/orders_history_view.dart';
 import '../views/cart_view.dart';
 import '../views/home_view.dart';

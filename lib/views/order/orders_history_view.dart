@@ -4,11 +4,14 @@ import 'package:intl/intl.dart' as intl;
 import 'package:responsive_login_ui/config/ui_constants.dart';
 import 'package:responsive_login_ui/controller/orders_history_controller.dart';
 
+import '../../controller/order_controller.dart';
+
 class OrdersHistory extends StatelessWidget {
   const OrdersHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.find<OrderController>().readAllOrderFromDB();
     var size = Get.size;
     return Scaffold(
       appBar: AppBar(

@@ -57,9 +57,11 @@ class CartController extends GetxController {
     if (listCarts != null) {
       listCarts.sort((a, b) => int.parse(a.id!) - int.parse(b.id!));
       maxId = int.parse(listCarts.last.id!);
+    } else {
+      listCarts = [];
     }
     Cart cart = Cart(
-      id: _carts!.isEmpty ? '${carts!.length + 1}' : '${maxId! + 1}',
+      id: listCarts.isEmpty ? '${listCarts.length + 1}' : '${maxId! + 1}',
       productId: product.id,
       orderId: _orderId,
       productName: product.name,
