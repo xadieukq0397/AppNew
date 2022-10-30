@@ -9,6 +9,7 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().readAllCartIsNotExitedFromDB();
     return Scaffold(
       body: Column(
         children: [

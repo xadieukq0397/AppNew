@@ -8,6 +8,7 @@ class CartField {
     productName,
     unitPrice,
     quantity,
+    isExisted,
   ];
   static final String id = 'id';
   static final String productId = 'productId';
@@ -15,6 +16,7 @@ class CartField {
   static final String productName = 'productName';
   static final String unitPrice = 'unitPrice';
   static final String quantity = 'quantity';
+  static final String isExisted = 'isExisted';
 }
 
 class Cart {
@@ -24,6 +26,7 @@ class Cart {
   final String? productName;
   final int? unitPrice;
   int quantity;
+  String? isExisted;
 
   Cart({
     required this.id,
@@ -32,6 +35,7 @@ class Cart {
     required this.productName,
     required this.unitPrice,
     required this.quantity,
+    required this.isExisted,
   });
 
   static Cart fromJson(Map<String, dynamic> json) => Cart(
@@ -41,6 +45,7 @@ class Cart {
         productName: json['productName'],
         unitPrice: json['unitPrice'],
         quantity: json['quantity'],
+        isExisted: json['isExisted'],
       );
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -49,5 +54,6 @@ class Cart {
         'productName': productName,
         'unitPrice': unitPrice,
         'quantity': quantity,
+        'isExisted': isExisted,
       };
 }

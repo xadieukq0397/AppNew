@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_login_ui/controller/controller_view_controller.dart';
 import '../config/ui_constants.dart';
 import '../controller/auth_controller.dart';
+import '../controller/order_controller.dart';
+import '../controller/product_controller.dart';
 import '../routes/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -33,21 +34,22 @@ class _LoginViewState extends State<LoginView> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          backgroundColor: Colors.white,
-          resizeToAvoidBottomInset: false,
-          body: GetBuilder<AuthController>(
-            builder: (authController) {
-              return LayoutBuilder(
-                builder: (context, constraints) {
-                  if (constraints.maxWidth > 600) {
-                    return _buildLargeScreen(size, authController);
-                  } else {
-                    return _buildSmallScreen(size, authController);
-                  }
-                },
-              );
-            },
-          )),
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        body: GetBuilder<AuthController>(
+          builder: (authController) {
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 600) {
+                  return _buildLargeScreen(size, authController);
+                } else {
+                  return _buildSmallScreen(size, authController);
+                }
+              },
+            );
+          },
+        ),
+      ),
     );
   }
 

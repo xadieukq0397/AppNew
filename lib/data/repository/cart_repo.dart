@@ -25,6 +25,12 @@ class CartRepo {
     return carts;
   }
 
+  Future<List<Cart>?> readAllCartIsNotExistedFromDB() async {
+    List<Cart>? carts = [];
+    carts = await StorageDatabase.instance.readAllCartIsNotExistedFromDB();
+    return carts;
+  }
+
   Future<List<Cart>?> readAllCartByOrderIdFromDB(String orderId) async {
     List<Cart>? carts;
     carts = await StorageDatabase.instance.readAllCartByOrderIDFromDB(orderId);

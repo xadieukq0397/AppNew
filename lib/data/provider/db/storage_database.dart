@@ -50,6 +50,7 @@ class StorageDatabase {
     final addressCustomer = 'TEXT NOT NULL';
     final transportCode = 'INTERGER NOT NULL';
     final statusOrder = 'TEXT NOT NULL';
+    final isExisted = 'TEXT NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableProvinces(
@@ -93,7 +94,8 @@ CREATE TABLE $tableCart(
   ${CartField.productId} $productId,
   ${CartField.productName} $productName,
   ${CartField.unitPrice} $unitPrice,
-  ${CartField.quantity} $quantity
+  ${CartField.quantity} $quantity,
+  ${CartField.isExisted} $isExisted
   )''');
     await db.execute('''
 CREATE TABLE $tableOrder(
@@ -114,7 +116,11 @@ CREATE TABLE $tableOrder(
   Future<void> createProvinceToDB(Province province) async {
     final db = await instance.database;
     final map = province.toJson();
-    await db.insert(tableProvinces, map);
+    await db.insert(
+      tableProvinces,
+      map,
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<Province?> readProvinceByIDFromDB(String? id) async {
@@ -161,7 +167,11 @@ CREATE TABLE $tableOrder(
   Future<void> createDistrictToDB(District district) async {
     final db = await instance.database;
     final map = district.toJson();
-    await db.insert(tableDistrict, map);
+    await db.insert(
+      tableDistrict,
+      map,
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<District?> readDistrictByIDFromDB(String? id) async {
@@ -214,7 +224,11 @@ CREATE TABLE $tableOrder(
   Future<void> createWardToDB(Ward district) async {
     final db = await instance.database;
     final map = district.toJson();
-    await db.insert(tableWard, map);
+    await db.insert(
+      tableWard,
+      map,
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<Ward?> readWardByIDFromDB(String? id) async {
@@ -264,7 +278,11 @@ CREATE TABLE $tableOrder(
   Future<void> createProductToDB(Product product) async {
     final db = await instance.database;
     final map = product.toJson();
-    await db.insert(tableProduct, map);
+    await db.insert(
+      tableProduct,
+      map,
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<List<Product>?> readAllProductFromDB() async {
@@ -296,12 +314,31 @@ CREATE TABLE $tableOrder(
   Future<void> createCartToDB(Cart cart) async {
     final db = await instance.database;
     final map = cart.toJson();
-    await db.insert(tableCart, map);
+    await db.insert(
+      tableCart,
+      map,
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<List<Cart>?> readAllCartFromDB() async {
     final db = await instance.database;
     final results = await db.query(tableCart);
+    if (results.isNotEmpty) {
+      return results.map((json) => Cart.fromJson(json)).toList();
+    } else {
+      return null;
+    }
+  }
+
+  Future<List<Cart>?> readAllCartIsNotExistedFromDB() async {
+    final db = await instance.database;
+    final results = await db.query(
+      tableCart,
+      columns: CartField.values,
+      where: '${CartField.isExisted} = ?',
+      whereArgs: ['false'],
+    );
     if (results.isNotEmpty) {
       return results.map((json) => Cart.fromJson(json)).toList();
     } else {
@@ -362,7 +399,11 @@ CREATE TABLE $tableOrder(
   Future<void> createOrderToDB(Order order) async {
     final db = await instance.database;
     final map = order.toJson();
-    await db.insert(tableOrder, map);
+    await db.insert(
+      tableOrder,
+      map,
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<List<Order>?> readAllOrderFromDB() async {

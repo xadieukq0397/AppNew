@@ -4,8 +4,8 @@ import 'package:responsive_login_ui/views/cart_view.dart';
 import 'package:responsive_login_ui/views/check_out/select_transport_view.dart';
 import 'package:responsive_login_ui/views/home_view.dart';
 import 'package:responsive_login_ui/views/login_view.dart';
-import 'package:responsive_login_ui/views/order/order_detail.dart';
-import 'package:responsive_login_ui/views/order/orders_history.dart';
+import 'package:responsive_login_ui/views/order/order_detail_view.dart';
+import 'package:responsive_login_ui/views/order/orders_history_view.dart';
 import 'package:responsive_login_ui/views/signup_view.dart';
 import 'package:responsive_login_ui/views/controller_view.dart';
 

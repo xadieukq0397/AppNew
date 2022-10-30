@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_login_ui/bindings/all_bindings.dart';
 import 'package:responsive_login_ui/controller/address_controller.dart';
 import 'package:responsive_login_ui/controller/checkout_controller.dart';
 import 'package:responsive_login_ui/controller/controller_view_controller.dart';
 import 'package:responsive_login_ui/controller/order_controller.dart';
-import 'package:responsive_login_ui/controller/product_controller.dart';
-import 'package:responsive_login_ui/views/controller_view.dart';
 import 'package:responsive_login_ui/views/widgets/select_address.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../controller/cart_controller.dart';
@@ -282,10 +279,8 @@ class AddressCheckOut extends StatelessWidget {
                               "${_wardController.text}, "
                               "${_districtController.text}, "
                               "${_provinceController.text}";
-                          await orderController.getDataTransportFee();
-                          await orderController.createOrderToDB();
-                          await orderController.readAllOrderFromDB();
-                          Get.toNamed(Routes.getControlViewPage());
+                          await orderController.createAnOrder();
+                          Get.offAllNamed(Routes.getControlViewPage());
                         }
                       } else if (Get.find<CheckOutController>()
                               .selectTypeDelivery ==
