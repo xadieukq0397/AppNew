@@ -105,7 +105,6 @@ class CartController extends GetxController {
 
   Future<void> updateCartToDB(Cart cart) async {
     await cartRepo.updateCartToDB(cart);
-    update();
   }
 
   void getTotalPrice(List<Cart>? carts) {

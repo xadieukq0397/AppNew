@@ -121,7 +121,6 @@ class OrderController extends GetxController {
         await Get.find<CartController>().updateCartToDB(cart);
       }
     }
-    update();
   }
 
   Future<List<Order>?> readAllOrderFromDB() async {
