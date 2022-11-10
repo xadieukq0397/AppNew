@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class OrderDetail extends StatelessWidget {
-  const OrderDetail({Key? key}) : super(key: key);
+import '../../routes/routes.dart';
 
+class OrderDetail extends StatelessWidget {
+  const OrderDetail({Key? key, required this.pageId}) : super(key: key);
+  final int pageId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,24 +21,27 @@ class OrderDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 2,
+                  GestureDetector(
+                    onTap: () => Get.toNamed(Routes.getOrder()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                        shape: BoxShape.circle,
                       ),
-                      shape: BoxShape.circle,
-                    ),
-                    width: 25,
-                    height: 25,
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Center(
-                          child: Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        color: Colors.black,
-                        size: 18,
-                      )),
+                      width: 25,
+                      height: 25,
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Center(
+                            child: Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          color: Colors.black,
+                          size: 18,
+                        )),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 5),

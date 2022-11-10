@@ -307,5 +307,9 @@
   "enterPhoneCustomer": "Please enter Customer' phone number",
   "@enterPhoneCustomer": {
     "description": "Customer's address in order page"
+  },
+  "textEmptyOrder": "Order Empty",
+  "@textEmptyOrder": {
+    "description": "text empty order"
   }
 }

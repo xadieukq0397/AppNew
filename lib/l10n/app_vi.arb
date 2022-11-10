@@ -74,5 +74,6 @@
     "errorCustomerName": "Bạn chưa điền tên khách hàng",
     "enterCustomerName": "Hãy điền tên khách hàng",
     "errorphoneCustomer": "Bạn chưa điền số điện thoại",
-    "enterPhoneCustomer": "Hãy điền số điện thoại"
+    "enterPhoneCustomer": "Hãy điền số điện thoại",
+    "textEmptyOrder": "Đơn hàng trống"
 }
