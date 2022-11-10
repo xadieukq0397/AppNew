@@ -12,6 +12,9 @@ class OrderController extends GetxController {
   List<Order> _orders = [];
   List<Order> get orders => _orders;
 
+  Map<int, List<Cart>?> _mapListCart = {};
+  Map<int, List<Cart>?> get mapListCart => _mapListCart;
+
   Map<String, dynamic> _query = {};
 
   bool _isChangeState = false;
@@ -49,13 +52,19 @@ class OrderController extends GetxController {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  bool _isCreate = false;
+  bool get isCreate => _isCreate;
+
+  List<List<Cart>?> _listValuesMapOrder = [];
+  List<List<Cart>?> get listValuesMapOrder => _listValuesMapOrder;
+
   OrderController({
     required this.orderRepo,
   });
 
   // Server GHTK
   Future<void> getDataTransportFee() async {
-    _isLoading = true;
+    _isCreate = true;
     Response response = await orderRepo.getDataTransportFee(_query);
     if (response.statusCode == 200) {
       Map<String, dynamic> result = jsonDecode(jsonEncode(response.body));
@@ -97,12 +106,11 @@ class OrderController extends GetxController {
       phoneCustomer: _phoneCustomer,
       addressCustomer: _addressCustomer,
       transportCode: 123456,
-      statusOrder: "Đơn tạm",
+      statusOrder: "Temporary",
     );
     await orderRepo.createOrderToDB(order: order);
     print("Create order to DB");
-    _isLoading = false;
-
+    _isCreate = false;
     update();
   }
 
@@ -124,12 +132,19 @@ class OrderController extends GetxController {
   }
 
   Future<List<Order>?> readAllOrderFromDB() async {
+    _isLoading = true;
+    _mapListCart = {};
     List<Order>? listOrders = await orderRepo.readAllOrderFromDB();
     if (listOrders != null) {
       _orders = [];
       for (Order order in listOrders) {
         _orders.add(order);
+        List<Cart>? listCart = await Get.find<CartController>()
+            .readAllCartByOrderIdFromDB(order.id!);
+        _mapListCart.putIfAbsent(int.parse(order.id!), () => listCart);
       }
+      getProductFromOrder();
+      _isLoading = false;
       update();
       return listOrders;
     } else {
@@ -143,5 +158,10 @@ class OrderController extends GetxController {
       _isChangeState = !_isChangeState;
     }
     update();
+  }
+
+  void getProductFromOrder() {
+    _listValuesMapOrder = [];
+    _listValuesMapOrder = List<List<Cart>?>.from(_mapListCart.values);
   }
 }

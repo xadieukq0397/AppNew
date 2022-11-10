@@ -157,177 +157,175 @@ class AddressCheckOut extends StatelessWidget {
             GetBuilder<OrderController>(
               builder: (orderController) {
                 return GestureDetector(
-                    onTap: () async {
-                      if (Get.find<CheckOutController>().selectTypeDelivery ==
+                  onTap: () async {
+                    if (Get.find<CheckOutController>().selectTypeDelivery ==
+                        null) {
+                      Get.snackbar(
+                          AppLocalizations.of(context)!.notSelectOrderBy,
+                          AppLocalizations.of(context)!.selectOrderBy,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white);
+                    } else if (Get.find<CheckOutController>()
+                            .selectTypeDelivery ==
+                        'address') {
+                      if (_customerNameController.text.trim().isEmpty) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.errorCustomerName,
+                          AppLocalizations.of(context)!.enterCustomerName,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else if (_phoneNumberController.text.trim().isEmpty) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.errorphoneCustomer,
+                          AppLocalizations.of(context)!.enterPhoneCustomer,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else if (_provinceController.text.trim().isEmpty) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.notSelectProvinceOne,
+                          AppLocalizations.of(context)!.notSelectProvinceTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else if (_districtController.text.trim().isEmpty) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.notSelectDistrictOne,
+                          AppLocalizations.of(context)!.notSelectDistrictTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else if (_wardController.text.trim().isEmpty) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.notSelectWardOne,
+                          AppLocalizations.of(context)!.notSelectWardTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else if (_villageController.text.trim().isEmpty) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.notSelectVillageOne,
+                          AppLocalizations.of(context)!.notSelectVillageOne,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else if (Get.find<AddressController>().provinceType ==
                           null) {
                         Get.snackbar(
-                            AppLocalizations.of(context)!.notSelectOrderBy,
-                            AppLocalizations.of(context)!.selectOrderBy,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white);
-                      } else if (Get.find<CheckOutController>()
-                              .selectTypeDelivery ==
-                          'address') {
-                        if (_customerNameController.text.trim().isEmpty) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.errorCustomerName,
-                            AppLocalizations.of(context)!.enterCustomerName,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else if (_phoneNumberController.text.trim().isEmpty) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.errorphoneCustomer,
-                            AppLocalizations.of(context)!.enterPhoneCustomer,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else if (_provinceController.text.trim().isEmpty) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.notSelectProvinceOne,
-                            AppLocalizations.of(context)!.notSelectProvinceTwo,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else if (_districtController.text.trim().isEmpty) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.notSelectDistrictOne,
-                            AppLocalizations.of(context)!.notSelectDistrictTwo,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else if (_wardController.text.trim().isEmpty) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.notSelectWardOne,
-                            AppLocalizations.of(context)!.notSelectWardTwo,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else if (_villageController.text.trim().isEmpty) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.notSelectVillageOne,
-                            AppLocalizations.of(context)!.notSelectVillageOne,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else if (Get.find<AddressController>().provinceType ==
-                            null) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.errSelectProvinceOne,
-                            AppLocalizations.of(context)!.errSelectProvinceTwo,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                          _provinceController.text = "";
-                          _districtController.text = "";
-                          _wardController.text = "";
-                          _villageController.text = "";
-                          Get.find<AddressController>().isEnableDistrictText =
-                              false;
-                          Get.find<AddressController>().isEnableWardText =
-                              false;
-                          Get.find<AddressController>().isEnableVillageText =
-                              false;
-                        } else if (Get.find<AddressController>().districtType ==
-                            null) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.errSelectDistrictOne,
-                            AppLocalizations.of(context)!.errSelectDistrictTwo,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                          _districtController.text = "";
-                          _wardController.text = "";
-                          _villageController.text = "";
-                          Get.find<AddressController>().isEnableWardText =
-                              false;
-                          Get.find<AddressController>().isEnableVillageText =
-                              false;
-                        } else if (Get.find<AddressController>().wardType ==
-                            null) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.errSelectWardOne,
-                            AppLocalizations.of(context)!.errSelectWardTwo,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                          _wardController.text = "";
-                          _villageController.text = "";
-                          Get.find<AddressController>().isEnableVillageText =
-                              false;
-                        } else {
-                          orderController.query = {
-                            'address': _villageController.text,
-                            'ward': _wardController.text,
-                            'district': _districtController.text,
-                            'province': _provinceController.text,
-                            "pick_province": "Hà Nội",
-                            "pick_district": "Thanh Xuân",
-                            "weight":
-                                "${Get.find<CartController>().totalWeight}",
-                            "value":
-                                "${Get.find<CartController>().subTotalPrice}",
-                            "deliver_option":
-                                Get.find<CheckOutController>().selectXfast,
-                          };
-                          orderController.customerName =
-                              _customerNameController.text;
-                          orderController.phoneCustomer =
-                              _phoneNumberController.text;
-                          orderController.addressCustomer =
-                              "${_villageController.text}, "
-                              "${_wardController.text}, "
-                              "${_districtController.text}, "
-                              "${_provinceController.text}";
-                          await orderController.createAnOrder();
-                          Get.offAllNamed(Routes.getControlViewPage());
-                        }
-                      } else if (Get.find<CheckOutController>()
-                              .selectTypeDelivery ==
-                          'billCode') {
-                        if (_billCodeController.text.trim().isEmpty) {
-                          Get.snackbar(
-                            AppLocalizations.of(context)!.notEnterBillCodeOne,
-                            AppLocalizations.of(context)!.notEnterBillCodeTwo,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else {
-                          Get.toNamed(Routes.getControlViewPage());
-                          orderController
-                              .getStatusOrder(_billCodeController.text.trim());
-                        }
+                          AppLocalizations.of(context)!.errSelectProvinceOne,
+                          AppLocalizations.of(context)!.errSelectProvinceTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                        _provinceController.text = "";
+                        _districtController.text = "";
+                        _wardController.text = "";
+                        _villageController.text = "";
+                        Get.find<AddressController>().isEnableDistrictText =
+                            false;
+                        Get.find<AddressController>().isEnableWardText = false;
+                        Get.find<AddressController>().isEnableVillageText =
+                            false;
+                      } else if (Get.find<AddressController>().districtType ==
+                          null) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.errSelectDistrictOne,
+                          AppLocalizations.of(context)!.errSelectDistrictTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                        _districtController.text = "";
+                        _wardController.text = "";
+                        _villageController.text = "";
+                        Get.find<AddressController>().isEnableWardText = false;
+                        Get.find<AddressController>().isEnableVillageText =
+                            false;
+                      } else if (Get.find<AddressController>().wardType ==
+                          null) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.errSelectWardOne,
+                          AppLocalizations.of(context)!.errSelectWardTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                        _wardController.text = "";
+                        _villageController.text = "";
+                        Get.find<AddressController>().isEnableVillageText =
+                            false;
+                      } else {
+                        orderController.query = {
+                          'address': _villageController.text,
+                          'ward': _wardController.text,
+                          'district': _districtController.text,
+                          'province': _provinceController.text,
+                          "pick_province": "Hà Nội",
+                          "pick_district": "Thanh Xuân",
+                          "weight": "${Get.find<CartController>().totalWeight}",
+                          "value":
+                              "${Get.find<CartController>().subTotalPrice}",
+                          "deliver_option":
+                              Get.find<CheckOutController>().selectXfast,
+                        };
+                        orderController.customerName =
+                            _customerNameController.text;
+                        orderController.phoneCustomer =
+                            _phoneNumberController.text;
+                        orderController.addressCustomer =
+                            "${_villageController.text}, "
+                            "${_wardController.text}, "
+                            "${_districtController.text}, "
+                            "${_provinceController.text}";
+                        await orderController.createAnOrder();
+                        Get.offAllNamed(Routes.getControlViewPage());
                       }
-                    },
-                    child: orderController.isLoading
-                        ? Container(
-                            width: 200,
-                            height: 60,
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C569),
+                    } else if (Get.find<CheckOutController>()
+                            .selectTypeDelivery ==
+                        'billCode') {
+                      if (_billCodeController.text.trim().isEmpty) {
+                        Get.snackbar(
+                          AppLocalizations.of(context)!.notEnterBillCodeOne,
+                          AppLocalizations.of(context)!.notEnterBillCodeTwo,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else {
+                        Get.toNamed(Routes.getControlViewPage());
+                        orderController
+                            .getStatusOrder(_billCodeController.text.trim());
+                      }
+                    }
+                  },
+                  child: orderController.isCreate
+                      ? Container(
+                          width: 200,
+                          height: 60,
+                          decoration: const BoxDecoration(
+                            color: Color(0xff00C569),
+                          ),
+                          child: const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
                             ),
-                            child: const Center(
-                              child: CircularProgressIndicator(
+                          ),
+                        )
+                      : Container(
+                          width: 200,
+                          height: 60,
+                          decoration: const BoxDecoration(
+                            color: Color(0xff00C569),
+                          ),
+                          child: Center(
+                            child: Text(
+                              AppLocalizations.of(context)!.orderButton,
+                              style: const TextStyle(
+                                fontSize: 25,
                                 color: Colors.white,
                               ),
                             ),
-                          )
-                        : Container(
-                            width: 200,
-                            height: 60,
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C569),
-                            ),
-                            child: Center(
-                              child: Text(
-                                AppLocalizations.of(context)!.orderButton,
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ));
+                          ),
+                        ),
+                );
               },
             ),
             const SizedBox(height: 20),

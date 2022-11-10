@@ -80,13 +80,8 @@ class CartController extends GetxController {
     return true;
   }
 
-  Future<void> readAllCartByOrderIdFromDB(String orderId) async {
-    List<Cart>? listCarts = await cartRepo.readAllCartByOrderIdFromDB(orderId);
-    _carts = [];
-    for (var cart in listCarts!) {
-      _carts!.add(cart);
-    }
-    update();
+  Future<List<Cart>?> readAllCartByOrderIdFromDB(String orderId) async {
+    return await cartRepo.readAllCartByOrderIdFromDB(orderId);
   }
 
   Future<List<Cart>?> readAllCartIsNotExitedFromDB() async {
