@@ -18,50 +18,53 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     Get.find<OrderController>().readAllOrderFromDB();
     List<String> myTabs = [
-      'Temp Orders',
-      'Created Orders',
-      'Delivering Orders',
-      'Delivered Orders'
+      AppLocalizations.of(context)!.tempOrder,
+      AppLocalizations.of(context)!.createdOrder,
+      AppLocalizations.of(context)!.deliveringOrder,
+      AppLocalizations.of(context)!.deliveredOrder,
     ];
-    TabController tabController =
-        TabController(vsync: this, length: myTabs.length);
+    TabController tabController = TabController(
+      vsync: this,
+      length: myTabs.length,
+    );
     var size = Get.size;
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
+        title: Center(
           child: Text(
-            "My Orders",
+            AppLocalizations.of(context)!.titleOrder,
           ),
         ),
         backgroundColor: Colors.blue,
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: Get.size.height,
-          child: GetBuilder<OrderController>(
-            builder: (orderController) => Column(
-              children: [
-                TabBar(
-                  controller: tabController,
-                  unselectedLabelColor: Colors.amber,
-                  labelColor: Colors.redAccent,
-                  isScrollable: true,
-                  tabs: [
-                    Tab(
-                      text: myTabs[0],
-                    ),
-                    Tab(
-                      text: myTabs[1],
-                    ),
-                    Tab(
-                      text: myTabs[2],
-                    ),
-                    Tab(
-                      text: myTabs[3],
-                    )
-                  ],
-                ),
-                Expanded(
+      body: SizedBox(
+        height: Get.size.height,
+        child: GetBuilder<OrderController>(
+          builder: (orderController) => Column(
+            children: [
+              TabBar(
+                controller: tabController,
+                unselectedLabelColor: Colors.amber,
+                labelColor: Colors.redAccent,
+                isScrollable: true,
+                tabs: [
+                  Tab(
+                    text: myTabs[0],
+                  ),
+                  Tab(
+                    text: myTabs[1],
+                  ),
+                  Tab(
+                    text: myTabs[2],
+                  ),
+                  Tab(
+                    text: myTabs[3],
+                  )
+                ],
+              ),
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 20),
                   child: TabBarView(
                     controller: tabController,
                     children: [
@@ -77,73 +80,42 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
                                     onTap: () => Get.toNamed(
                                       Routes.getOrderDetailPage(index),
                                     ),
-                                    child: Container(
-                                      height: 150,
-                                      color: Colors.white,
-                                      padding: const EdgeInsets.only(
-                                        left: 10,
-                                        top: 10,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: Icon(
-                                              Icons.shopping_cart_rounded,
-                                              color: Colors.green,
-                                              size: 50,
-                                            ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.white,
                                           ),
-                                          Container(
-                                            color: Colors.white70,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Customer '
-                                                  '${orderController.orders[index].customerName}',
-                                                  textDirection:
-                                                      TextDirection.ltr,
-                                                  style: TextStyle(
-                                                      fontSize: kProductStyle(
-                                                              size * 1.7)
-                                                          .fontSize,
-                                                      color: Colors.black87),
+                                          height: 160,
+                                          padding: const EdgeInsets.all(10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              const SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child: Icon(
+                                                  Icons.shopping_cart_rounded,
+                                                  color: Colors.green,
+                                                  size: 50,
                                                 ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  intl.DateFormat(
-                                                          'dd-MM-yyyy kk:mm:ss')
-                                                      .format(
-                                                    DateTime.parse(
-                                                      orderController
-                                                          .orders[index].time!,
-                                                    ),
-                                                  ),
-                                                  style: TextStyle(
-                                                      fontSize: kProductStyle(
-                                                              size * 1.5)
-                                                          .fontSize,
-                                                      color: Colors.grey),
-                                                ),
-                                                const SizedBox(
-                                                  height: 20,
-                                                ),
-                                                Column(
+                                              ),
+                                              Container(
+                                                color: Colors.white70,
+                                                child: Column(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      '${orderController.listValuesMapOrder[index]!.length} product',
+                                                      '${AppLocalizations.of(context)!.customerTabbar} '
+                                                      '${orderController.orders[index].customerName}',
+                                                      textDirection:
+                                                          TextDirection.ltr,
                                                       style: TextStyle(
                                                           fontSize:
                                                               kProductStyle(
@@ -153,24 +125,67 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
                                                           color:
                                                               Colors.black87),
                                                     ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
                                                     Text(
-                                                      'Total price order ${orderController.orders[index].totalPrice}',
+                                                      intl.DateFormat(
+                                                              'dd-MM-yyyy kk:mm:ss')
+                                                          .format(
+                                                        DateTime.parse(
+                                                          orderController
+                                                              .orders[index]
+                                                              .time!,
+                                                        ),
+                                                      ),
                                                       style: TextStyle(
                                                           fontSize:
                                                               kProductStyle(
                                                                       size *
-                                                                          1.7)
+                                                                          1.5)
                                                                   .fontSize,
-                                                          color:
-                                                              Colors.black87),
+                                                          color: Colors.grey),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          '${orderController.listValuesMapOrder[index]!.length} ${AppLocalizations.of(context)!.textProduct}',
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  kProductStyle(
+                                                                          size *
+                                                                              1.7)
+                                                                      .fontSize,
+                                                              color: Colors
+                                                                  .black87),
+                                                        ),
+                                                        Text(
+                                                          '${AppLocalizations.of(context)!.textTotalPriceOrder} ${orderController.orders[index].totalPrice}',
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  kProductStyle(
+                                                                          size *
+                                                                              1.7)
+                                                                      .fontSize,
+                                                              color: Colors
+                                                                  .black87),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                      ],
                                     ),
                                   ),
                                 )
@@ -180,9 +195,9 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    'assets/images/empty_cart.png',
-                                    height: 200,
-                                    width: 200,
+                                    'assets/images/empty_order.png',
+                                    height: 300,
+                                    width: 300,
                                   ),
                                   const SizedBox(height: 20),
                                   Text(
@@ -202,9 +217,9 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
-                              'assets/images/empty_cart.png',
-                              height: 200,
-                              width: 200,
+                              'assets/images/empty_order.png',
+                              height: 300,
+                              width: 300,
                             ),
                             const SizedBox(height: 20),
                             Text(
@@ -223,9 +238,9 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
-                              'assets/images/empty_cart.png',
-                              height: 200,
-                              width: 200,
+                              'assets/images/empty_order.png',
+                              height: 300,
+                              width: 300,
                             ),
                             const SizedBox(height: 20),
                             Text(
@@ -244,9 +259,9 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
-                              'assets/images/empty_cart.png',
-                              height: 200,
-                              width: 200,
+                              'assets/images/empty_order.png',
+                              height: 300,
+                              width: 300,
                             ),
                             const SizedBox(height: 20),
                             Text(
@@ -261,9 +276,9 @@ class _OrderViewState extends State<OrderView> with TickerProviderStateMixin {
                       ),
                     ],
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),

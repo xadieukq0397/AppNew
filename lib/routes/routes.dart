@@ -40,12 +40,11 @@ class Routes {
     GetPage(name: home, page: () => const HomeView()),
     GetPage(name: cart, page: () => const CartView()),
     GetPage(name: transport, page: () => const SelectTransport()),
-    GetPage(name: delivery, page: () => const AddressCheckOut()),
+    GetPage(name: delivery, page: () => const OrderByView()),
     GetPage(
         name: orderDetail,
         page: () {
           var pageId = Get.parameters['pageId'];
-          print(pageId);
           return OrderDetail(
             pageId: int.parse(pageId!),
           );

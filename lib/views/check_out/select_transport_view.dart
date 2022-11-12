@@ -9,23 +9,23 @@ class SelectTransport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => CheckOutController());
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: const Icon(Icons.arrow_back_ios),
+        ),
+        title: Text(
+          AppLocalizations.of(context)!.titleTransport,
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.blue,
+      ),
       body: Column(
         children: [
-          Container(
-            height: 100,
-            width: double.infinity,
-            color: Colors.blueAccent,
-            child: Center(
-              child: Text(
-                AppLocalizations.of(context)!.titleTransport,
-                style: const TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
           GetBuilder<CheckOutController>(
             init: CheckOutController(),
             builder: (checkOutController) => Column(

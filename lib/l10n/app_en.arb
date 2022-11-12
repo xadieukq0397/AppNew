@@ -308,8 +308,44 @@
   "@enterPhoneCustomer": {
     "description": "Customer's address in order page"
   },
+  "titleOrder": "My Order",
+  "@titleOrder": {
+    "description": "title order page"
+  },
   "textEmptyOrder": "Order Empty",
   "@textEmptyOrder": {
     "description": "text empty order"
+  },
+  "tempOrder": "Temp Order",
+  "@tempOrder": {
+    "description": "tabbar order"
+  },
+  "createdOrder": "Created Order",
+  "@createdOrder": {
+    "description": "tabbar order"
+  },
+  "deliveringOrder": "Delivering Order",
+  "@deliveringOrder": {
+    "description": "tabbar order"
+  },
+  "deliveredOrder": "Delivered Order",
+  "@deliveredOrder": {
+    "description": "tabbar order"
+  },
+  "textProduct": "product",
+  "@textProduct": {
+    "description": "count product in order"
+  },
+  "textTotalPriceOrder": "Total price order",
+  "@textTotalPriceOrder": {
+    "description": "total price in order page"
+  },
+  "textQuantity": "Quantity",
+  "@textQuantity": {
+    "description": "text of quantity"
+  },
+  "buttonPlaceOrder": "Place an order",
+  "@buttonPlaceOrder": {
+    "description": "button of Place an order"
   }
 }

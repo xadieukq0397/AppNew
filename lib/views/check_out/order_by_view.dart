@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/controller/address_controller.dart';
 import 'package:responsive_login_ui/controller/checkout_controller.dart';
-import 'package:responsive_login_ui/controller/controller_view_controller.dart';
 import 'package:responsive_login_ui/controller/order_controller.dart';
 import 'package:responsive_login_ui/views/widgets/select_address.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../controller/cart_controller.dart';
 import '../../routes/routes.dart';
 
-class AddressCheckOut extends StatelessWidget {
-  const AddressCheckOut({Key? key}) : super(key: key);
+class OrderByView extends StatelessWidget {
+  const OrderByView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => CheckOutController());
     TextEditingController _customerNameController = TextEditingController();
     TextEditingController _phoneNumberController = TextEditingController();
     TextEditingController _provinceController = TextEditingController();
@@ -22,23 +22,23 @@ class AddressCheckOut extends StatelessWidget {
     TextEditingController _villageController = TextEditingController();
     TextEditingController _billCodeController = TextEditingController();
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Get.delete<CheckOutController>();
+            Get.back();
+          },
+          child: const Icon(Icons.arrow_back_ios),
+        ),
+        title: Text(
+          AppLocalizations.of(context)!.titleOrderBy,
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.blue,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 100,
-              width: double.infinity,
-              color: Colors.blueAccent,
-              child: Center(
-                child: Text(
-                  AppLocalizations.of(context)!.titleOrderBy,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
             GetBuilder<CheckOutController>(
               builder: (checkOutController) => Column(
                 children: [
