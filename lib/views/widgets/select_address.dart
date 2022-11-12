@@ -7,6 +7,9 @@ import '../../data/model/district.dart';
 import '../../data/model/province.dart';
 import '../../data/model/ward.dart';
 
+import 'package:responsive_login_ui/bindings/address_bindings.dart'
+    as address_bindings;
+
 class SelectAddress extends StatelessWidget {
   const SelectAddress({
     Key? key,
@@ -25,6 +28,7 @@ class SelectAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    address_bindings.dependencies();
     Get.find<AddressController>().createProvincesToDB();
     return GetBuilder<AddressController>(
       builder: (addressController) => Column(

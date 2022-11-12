@@ -37,6 +37,7 @@ class StorageDatabase {
     final transportFee = 'INTERGER NOT NULL';
     final time = 'TEXT NOT NULL';
     final image = 'TEXT NOT NULL';
+    final productImage = 'TEXT NOT NULL';
     final decription = 'TEXT NOT NULL';
     final unitPrice = 'INTERGER NOT NULL';
     final price = 'INTERGER NOT NULL';
@@ -93,6 +94,7 @@ CREATE TABLE $tableCart(
   ${CartField.orderId} $orderId,
   ${CartField.productId} $productId,
   ${CartField.productName} $productName,
+  ${CartField.productImage} $productImage,
   ${CartField.unitPrice} $unitPrice,
   ${CartField.quantity} $quantity,
   ${CartField.isExisted} $isExisted

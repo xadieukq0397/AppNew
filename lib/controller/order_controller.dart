@@ -106,7 +106,7 @@ class OrderController extends GetxController {
       phoneCustomer: _phoneCustomer,
       addressCustomer: _addressCustomer,
       transportCode: 123456,
-      statusOrder: "Temporary",
+      statusOrder: "Đơn tạm",
     );
     await orderRepo.createOrderToDB(order: order);
     print("Create order to DB");
