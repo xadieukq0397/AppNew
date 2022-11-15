@@ -293,7 +293,7 @@ CREATE TABLE $tableOrder(
     if (results.isNotEmpty) {
       return results.map((json) => Product.fromJson(json)).toList();
     } else {
-      return null;
+      return [];
     }
   }
 

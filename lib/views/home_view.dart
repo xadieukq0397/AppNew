@@ -11,6 +11,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<ProductController>().getProducts();
     Get.find<ProductController>().readAllProductFromDB();
     var size = Get.size;
     return Scaffold(
