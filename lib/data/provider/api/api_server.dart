@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:responsive_login_ui/config/app_constants.dart';
 
 class ApiServer extends GetConnect implements GetxService {
   late String products;
