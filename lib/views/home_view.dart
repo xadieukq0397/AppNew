@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    preLoad();
+    Get.find<ProductController>().readAllProductFromDB();
     var size = Get.size;
     return Scaffold(
       body: Column(
@@ -40,9 +40,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 onChanged: (value) async {
-                  if (productController.isFilter) {
-                    await Get.find<ProductController>().filterProduct(value);
-                  }
+                  await Get.find<ProductController>().filterProduct(value);
                   if (value.isEmpty) {
                     await productController.readAllProductFromDB();
                   }
@@ -197,9 +195,4 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<void> preLoad() async {
-  await Get.find<ProductController>().getProducts();
-  await Get.find<ProductController>().readAllProductFromDB();
 }

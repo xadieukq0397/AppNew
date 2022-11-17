@@ -12,13 +12,13 @@ class ProductController extends GetxController {
   List<Product> _products = [];
   List<Product> get products => _products;
 
-  bool _isFilter = true;
-  bool get isFilter => _isFilter;
   ProductController({required this.productRepo});
-  Future<void> getProducts() async {
+  Future<List<Product>> getProducts() async {
+    List<Product> listProducts = [];
     Response response = await productRepo.getProducts();
     if (response.statusCode == 200) {
-      for (var element in response.body) {
+      List<dynamic> result = jsonDecode(jsonEncode(response.body));
+      for (var element in result) {
         Product product = Product(
           id: element["id"].toString(),
           name: element["title"],
@@ -28,17 +28,16 @@ class ProductController extends GetxController {
           inventory: element["rating"]["count"],
           weight: element["rating"]["count"],
         );
-        _products.add(product);
+        listProducts.add(product);
       }
     } else {
       print("error");
     }
-    update();
+    return listProducts;
   }
 
   Future<void> createProductToDB() async {
-    await getProducts();
-    List<Product>? listProducts = _products;
+    List<Product> listProducts = await getProducts();
     if (listProducts.isNotEmpty) {
       await productRepo.createProductToDB(products: listProducts);
       print("Create product to DB");
@@ -62,7 +61,6 @@ class ProductController extends GetxController {
     for (var product in listProducts!) {
       _products.add(product);
     }
-    _isFilter = true;
     _isLoading = false;
     update();
   }
@@ -77,7 +75,6 @@ class ProductController extends GetxController {
               product.name!.toLowerCase().startsWith(value.toLowerCase()))
           .toList();
     }
-    _isFilter = false;
     _isLoading = false;
     update();
   }
