@@ -40,9 +40,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 onChanged: (value) async {
-                  if (productController.isFilter) {
-                    await Get.find<ProductController>().filterProduct(value);
-                  }
+                  await Get.find<ProductController>().filterProduct(value);
                   if (value.isEmpty) {
                     await productController.readAllProductFromDB();
                   }

@@ -85,6 +85,7 @@ class OrderController extends GetxController {
   Future<void> getStatusOrder(String orderNumber) async {
     print('orderNumber: ' + orderNumber);
     Response response = await orderRepo.getOrderStatus(orderNumber);
+    print(response);
     if (response.statusCode == 200) {
       Map<String, dynamic> result = jsonDecode(jsonEncode(response.body));
       print(result);
