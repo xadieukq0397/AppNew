@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_login_ui/controller/address_controller.dart';
-import '../constants.dart';
-import '../controller/login_controller.dart';
-import '../controller/simple_ui_controller.dart';
+import 'package:responsive_login_ui/controller/order_controller.dart';
+import '../config/ui_constants.dart';
+import '../controller/auth_controller.dart';
 import '../routes/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -15,11 +14,10 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginController loginController = Get.find<LoginController>();
+  AuthController loginController = Get.find<AuthController>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -35,28 +33,29 @@ class _LoginViewState extends State<LoginView> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          backgroundColor: Colors.white,
-          resizeToAvoidBottomInset: false,
-          body: GetBuilder<SimpleUIController>(
-            builder: (simpleUIController) {
-              return LayoutBuilder(
-                builder: (context, constraints) {
-                  if (constraints.maxWidth > 600) {
-                    return _buildLargeScreen(size, simpleUIController);
-                  } else {
-                    return _buildSmallScreen(size, simpleUIController);
-                  }
-                },
-              );
-            },
-          )),
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        body: GetBuilder<AuthController>(
+          builder: (authController) {
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 600) {
+                  return _buildLargeScreen(size, authController);
+                } else {
+                  return _buildSmallScreen(size, authController);
+                }
+              },
+            );
+          },
+        ),
+      ),
     );
   }
 
   /// For large screens
   Widget _buildLargeScreen(
     Size size,
-    SimpleUIController simpleUIController,
+    AuthController authController,
   ) {
     return Row(
       children: [
@@ -65,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
           flex: 5,
           child: _buildMainBody(
             size,
-            simpleUIController,
+            authController,
           ),
         ),
       ],
@@ -75,12 +74,12 @@ class _LoginViewState extends State<LoginView> {
   /// For Small screens
   Widget _buildSmallScreen(
     Size size,
-    SimpleUIController simpleUIController,
+    AuthController authController,
   ) {
     return Center(
       child: _buildMainBody(
         size,
-        simpleUIController,
+        authController,
       ),
     );
   }
@@ -88,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
   /// Main Body
   Widget _buildMainBody(
     Size size,
-    SimpleUIController simpleUIController,
+    AuthController authController,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,9 +127,9 @@ class _LoginViewState extends State<LoginView> {
                 TextFormField(
                   style: kTextFormFieldStyle(),
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     hintText: AppLocalizations.of(context)!.username_or_gmail,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
@@ -155,17 +154,17 @@ class _LoginViewState extends State<LoginView> {
                 TextFormField(
                   style: kTextFormFieldStyle(),
                   controller: passwordController,
-                  obscureText: simpleUIController.isObscure,
+                  obscureText: authController.isObscure,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_open),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        simpleUIController.isObscure
+                        authController.isObscure
                             ? Icons.visibility
                             : Icons.visibility_off,
                       ),
                       onPressed: () {
-                        simpleUIController.isObscureActive();
+                        authController.isObscureActive();
                       },
                     ),
                     hintText: AppLocalizations.of(context)!.password,
@@ -211,7 +210,7 @@ class _LoginViewState extends State<LoginView> {
                     nameController.clear();
                     passwordController.clear();
                     _formKey.currentState?.reset();
-                    simpleUIController.isObscure = true;
+                    authController.isObscure = true;
                   },
                   child: RichText(
                     text: TextSpan(
@@ -250,7 +249,7 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ),
-        onPressed: () {
+        onPressed: () async {
           // Validate returns true if the form is valid, or false otherwise.
           // if (_formKey.currentState!.validate()) {
           //   String userName = nameController.text.trim();
@@ -264,11 +263,9 @@ class _LoginViewState extends State<LoginView> {
 
           //   print("After encode: " + passwordEncode);
           //   print("After encode: " + userNameEnCode);
-
-          Get.offNamed(Routes.country);
-          Get.find<AddressController>().createProvincesToDB();
-          // }
+          Get.offAllNamed(Routes.getControlViewPage());
         },
+        // },
         // },
         child: Text(AppLocalizations.of(context)!.login),
       ),

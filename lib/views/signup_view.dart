@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_login_ui/controller/auth_controller.dart';
 import '../routes/routes.dart';
-import '../constants.dart';
-import '../controller/simple_ui_controller.dart';
+import '../config/ui_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpView extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SignUpViewState extends State<SignUpView> {
     super.dispose();
   }
 
-  SimpleUIController simpleUIController = Get.find<SimpleUIController>();
+  AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +39,14 @@ class _SignUpViewState extends State<SignUpView> {
       child: Scaffold(
           backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
-          body: GetBuilder<SimpleUIController>(
-            builder: (simpleUIController) {
+          body: GetBuilder<AuthController>(
+            builder: (authController) {
               return LayoutBuilder(
                 builder: (context, constraints) {
                   if (constraints.maxWidth > 600) {
-                    return _buildLargeScreen(size, simpleUIController, theme);
+                    return _buildLargeScreen(size, authController, theme);
                   } else {
-                    return _buildSmallScreen(size, simpleUIController, theme);
+                    return _buildSmallScreen(size, authController, theme);
                   }
                 },
               );
@@ -57,13 +57,13 @@ class _SignUpViewState extends State<SignUpView> {
 
   /// For large screens
   Widget _buildLargeScreen(
-      Size size, SimpleUIController simpleUIController, ThemeData theme) {
+      Size size, AuthController authController, ThemeData theme) {
     return Row(
       children: [
         SizedBox(width: size.width * 0.06),
         Expanded(
           flex: 5,
-          child: _buildMainBody(size, simpleUIController, theme),
+          child: _buildMainBody(size, authController, theme),
         ),
       ],
     );
@@ -71,15 +71,15 @@ class _SignUpViewState extends State<SignUpView> {
 
   /// For Small screens
   Widget _buildSmallScreen(
-      Size size, SimpleUIController simpleUIController, ThemeData theme) {
+      Size size, AuthController authController, ThemeData theme) {
     return Center(
-      child: _buildMainBody(size, simpleUIController, theme),
+      child: _buildMainBody(size, authController, theme),
     );
   }
 
   /// Main Body
   Widget _buildMainBody(
-      Size size, SimpleUIController simpleUIController, ThemeData theme) {
+      Size size, AuthController authController, ThemeData theme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment:
@@ -171,17 +171,17 @@ class _SignUpViewState extends State<SignUpView> {
                 TextFormField(
                   style: kTextFormFieldStyle(),
                   controller: passwordController,
-                  obscureText: simpleUIController.isObscure,
+                  obscureText: authController.isObscure,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_open),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        simpleUIController.isObscure
+                        authController.isObscure
                             ? Icons.visibility
                             : Icons.visibility_off,
                       ),
                       onPressed: () {
-                        simpleUIController.isObscureActive();
+                        authController.isObscureActive();
                       },
                     ),
                     hintText: AppLocalizations.of(context)!.password,
@@ -229,7 +229,7 @@ class _SignUpViewState extends State<SignUpView> {
                     passwordController.clear();
                     _formKey.currentState?.reset();
 
-                    simpleUIController.isObscure = true;
+                    authController.isObscure = true;
                   },
                   child: RichText(
                     text: TextSpan(

@@ -92,6 +92,10 @@
   "@searchWard": {
     "description": "Search your Ward"
   },
+  "searchVillage": "Search Your Village",
+  "@searchVillage": {
+    "description": "Search your Village"
+  },
   "searchNotFound": "Not Found",
   "@searchNotFound": {
     "description": "Not found"
@@ -120,6 +124,14 @@
   "@notSelectWardTwo": {
     "description": "Please choose Ward"
   },
+  "notSelectVillageOne": "You have not selected a Village",
+  "@notSelectVillageOne": {
+    "description": "Not selected Village"
+  },
+  "notSelectVillageTwo": "Please select a Village",
+  "@notSelectVillageTwo": {
+    "description": "Please choose Village"
+  },
   "errSelectProvinceOne": "You have chosen the wrong Province",
   "@errProvinceOne": {
     "description": "Error choose province"
@@ -144,8 +156,196 @@
   "@errWardTwo": {
     "description": "Choose correct Ward"
   },
-  "agreeButton" : "Agree",
+  "agreeButton": "Agree",
   "@agreeButton": {
     "description": "Button press Agree"
+  },
+  "textfieldSearch": "Search your something",
+  "@textfieldSearch": {
+    "description": "Search product by name"
+  },
+  "addToCartButton": "Add to Cart",
+  "@addToCartButton": {
+    "description": "Button add Product to Cart"
+  },
+  "textInventory": "Inventory ",
+  "@textInventory": {
+    "description": "Text of Inventory"
+  },
+  "titleCart": "Your Cart",
+  "@titleCart": {
+    "description": "Title of Cart Screen"
+  },
+  "textPrice": "Price ",
+  "@price": {
+    "description": "Price (vnđ)"
+  },
+  "chekoutButton": "Check out",
+  "@chekoutButton": {
+    "description": "Button of check out"
+  },
+  "textTotal": "Total",
+  "@textTotal": {
+    "description": "Total price"
+  },
+  "textEmptyCart": "Cart Empty",
+  "@textEmptyCart": {
+    "description": "text empty cart"
+  },
+  "titleTransport": "Your Transport",
+  "@titleTransport": {
+    "description": "Title of transport page"
+  },
+  "titleEconomicalDelivery": "Economical delivery",
+  "@titleEconomicalDelivery": {
+    "description": "Title of Economical Delivery"
+  },
+  "titleFastDelivery": "Economical delivery",
+  "@titleFastDelivery": {
+    "description": "Title of Fast Delivery"
+  },
+  "nextButton": "Next",
+  "@nextButton": {
+    "description": "button next"
+  },
+  "titleOrderBy": "Order By",
+  "@titleOrderBy": {
+    "description": "title of order by"
+  },
+  "titleBillCode": "Bill Code",
+  "@titleBillCode": {
+    "description": "title of Bill Code TextField"
+  },
+  "textFieldBillCode": "Enter Bill Code",
+  "@textFieldBillCode": {
+    "description": "textField of Bill Code TextField"
+  },
+  "titleCustomerAddress": "Customer's Address",
+  "@titleCustomerAddress": {
+    "description": "title of Customer's Address"
+  },
+  "orderButton": "Create an order",
+  "@orderButton": {
+    "description": "title of order"
+  },
+  "notEnterBillCodeOne": "You have not entered the billcode",
+  "@notEnterBillCodeOne": {
+    "description": "Error billcode"
+  },
+  "notEnterBillCodeTwo": "Please enter billcode",
+  "@notEnterBillCodeTwo": {
+    "description": "Enter billcode"
+  },
+  "notSelectTransport": "You have not selected a Transport",
+  "@notSelectTransport": {
+    "description": "Error select Transport"
+  },
+  "selectTransport": "Please select a Transport",
+  "@selectTransport": {
+    "description": "select Transport"
+  },
+  "notSelectOrderBy": "You have not selected an Order by",
+  "@notSelectOrderBy": {
+    "description": "Error select an Order by"
+  },
+  "selectOrderBy": "Please select an Order by",
+  "@SelectTransport": {
+    "description": "select Order by"
+  },
+  "selectXfast": "XFAST",
+  "@selectXfast": {
+    "description": "select Xfast"
+  },
+  "titleOrderDetail": "ORDER DETAIL",
+  "@titleOrderDetail": {
+    "description": "Titla order detail page"
+  },
+  "paymentTabbar": "Payment",
+  "@paymentTabbar": {
+    "description": "Text in Tabbar"
+  },
+  "customerTabbar": "Customer",
+  "@customerTabbar": {
+    "description": "Custom's infor in Tabbar"
+  },
+  "subTotalOrder": "Subtotal",
+  "@subTotalOrder": {
+    "description": "Subtotal in order page"
+  },
+  "transportFeeOrder": "Transport Fee",
+  "@transportFeeOrder": {
+    "description": "transport Fee in order page"
+  },
+  "totalOrder": "Total",
+  "@totalOrder": {
+    "description": "Total in order page"
+  },
+  "customerName": "Customer's Name",
+  "@customName": {
+    "description": "Customer's name in order page"
+  },
+  "phoneNumber": "Phone Number",
+  "@phoneNumber": {
+    "description": "Phone number in order page"
+  },
+  "addressCustomer": "Customer's Address",
+  "@addressCustom": {
+    "description": "Customer's address in order page"
+  },
+  "errorCustomerName": "You have not entered Customer's name",
+  "@errorCustomerName": {
+    "description": "Customer's address in order page"
+  },
+  "enterCustomerName": "Please enter Customer' name",
+  "@enterCustomerName": {
+    "description": "Customer's address in order page"
+  },
+  "errorphoneCustomer": "You have not entered Customer's phone number",
+  "@errorphoneCustomer": {
+    "description": "Customer's address in order page"
+  },
+  "enterPhoneCustomer": "Please enter Customer' phone number",
+  "@enterPhoneCustomer": {
+    "description": "Customer's address in order page"
+  },
+  "titleOrder": "My Order",
+  "@titleOrder": {
+    "description": "title order page"
+  },
+  "textEmptyOrder": "Order Empty",
+  "@textEmptyOrder": {
+    "description": "text empty order"
+  },
+  "tempOrder": "Temp Order",
+  "@tempOrder": {
+    "description": "tabbar order"
+  },
+  "createdOrder": "Created Order",
+  "@createdOrder": {
+    "description": "tabbar order"
+  },
+  "deliveringOrder": "Delivering Order",
+  "@deliveringOrder": {
+    "description": "tabbar order"
+  },
+  "deliveredOrder": "Delivered Order",
+  "@deliveredOrder": {
+    "description": "tabbar order"
+  },
+  "textProduct": "product",
+  "@textProduct": {
+    "description": "count product in order"
+  },
+  "textTotalPriceOrder": "Total price order",
+  "@textTotalPriceOrder": {
+    "description": "total price in order page"
+  },
+  "textQuantity": "Quantity",
+  "@textQuantity": {
+    "description": "text of quantity"
+  },
+  "buttonPlaceOrder": "Place an order",
+  "@buttonPlaceOrder": {
+    "description": "button of Place an order"
   }
 }
