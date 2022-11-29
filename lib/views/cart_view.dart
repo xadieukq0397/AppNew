@@ -107,7 +107,7 @@ class CartView extends StatelessWidget {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            cartController.increment(index);
+                                            // cartController.increment(index);
                                           },
                                           child: const Icon(Icons.add,
                                               color: Colors.black),

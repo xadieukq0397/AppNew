@@ -15,20 +15,18 @@ class ProductController extends GetxController {
   ProductController({required this.productRepo});
   Future<List<Product>> getProducts() async {
     List<Product> listProducts = [];
-    Response response = await productRepo.getProducts();
+    Response response = await productRepo
+        .getProducts(pageQuery: {"page": "2", "page_size": "10"});
     if (response.statusCode == 200) {
-      List<dynamic> result = jsonDecode(jsonEncode(response.body));
-      for (var element in result) {
-        Product product = Product(
-          id: element["id"].toString(),
-          name: element["title"],
-          image: element["image"],
-          decription: element["description"],
-          price: element["price"].toInt(),
-          inventory: element["rating"]["count"],
-          weight: element["rating"]["count"],
-        );
-        listProducts.add(product);
+      Map<String, dynamic> result =
+          Map<String, dynamic>.from(jsonDecode(jsonEncode(response.body)));
+      if (result["success"] == true) {
+        print("got products");
+        for (var element in result["products"]) {
+          listProducts.add(Product.fromJson(element));
+        }
+      } else {
+        print("Not got products");
       }
     } else {
       print("error");
@@ -44,7 +42,7 @@ class ProductController extends GetxController {
     }
   }
 
-  Future<Product?> readProductByIdFromDB(String? id) async {
+  Future<Product?> readProductByIdFromDB(int? id) async {
     Product? product = await productRepo.readProductByIDFromDB(id: id);
     if (product != null) {
       return product;

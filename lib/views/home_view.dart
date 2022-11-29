@@ -78,15 +78,15 @@ class HomeView extends StatelessWidget {
                                             color: Colors.green, fontSize: 14),
                                         onTap:
                                             (CompletionHandler handler) async {
-                                          bool isAdd =
-                                              await Get.find<CartController>()
-                                                  .addToCart(productController
-                                                      .products[index]);
-                                          if (isAdd) {
-                                            await handler(true);
-                                            productController
-                                                .removeProduct(index);
-                                          }
+                                          // bool isAdd =
+                                          //     await Get.find<CartController>()
+                                          //         .addToCart(productController
+                                          //             .products[index]);
+                                          // if (isAdd) {
+                                          //   await handler(true);
+                                          //   productController
+                                          //       .removeProduct(index);
+                                          // }
                                         },
                                       ),
                                     ],
@@ -101,9 +101,16 @@ class HomeView extends StatelessWidget {
                                               topLeft: Radius.circular(20),
                                               bottomLeft: Radius.circular(20),
                                             ),
-                                            child: Image.network(
-                                                productController
-                                                    .products[index].image!),
+                                            child: productController
+                                                    .products[index]
+                                                    .imageUrls!
+                                                    .isEmpty
+                                                ? Image.network(
+                                                    'https://previews.123rf.com/images/latkun/latkun1712/latkun171200130/92172856-empty-transparent-background-seamless-pattern.jpg?fj=1')
+                                                : Image.network(
+                                                    productController
+                                                        .products[index]
+                                                        .imageUrls![0]!),
                                           ),
                                         ),
                                         Expanded(
@@ -157,7 +164,7 @@ class HomeView extends StatelessWidget {
                                                                 .textInventory +
                                                             productController
                                                                 .products[index]
-                                                                .inventory
+                                                                .stock
                                                                 .toString(),
                                                         style: TextStyle(
                                                           fontSize:

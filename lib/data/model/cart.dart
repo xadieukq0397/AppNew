@@ -23,7 +23,7 @@ class CartField {
 
 class Cart {
   final String? id;
-  final String? productId;
+  final int? productId;
   final String? orderId;
   final String? productName;
   final String? productImage;

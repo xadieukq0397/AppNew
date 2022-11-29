@@ -8,8 +8,8 @@ class ProductRepo {
   final ApiServer apiServer;
 
   ProductRepo({required this.apiServer});
-  Future<Response> getProducts() async {
-    return await apiServer.getData(AppConstants.getProducts);
+  Future<Response> getProducts({Map<String, dynamic>? pageQuery}) async {
+    return await apiServer.getData(AppConstants.getProducts, query: pageQuery);
   }
 
   Future<void> createProductToDB({List<Product>? products}) async {
@@ -24,7 +24,7 @@ class ProductRepo {
     }
   }
 
-  Future<Product?> readProductByIDFromDB({String? id}) async {
+  Future<Product?> readProductByIDFromDB({int? id}) async {
     Product? product = await StorageDatabase.instance.readProductByIDFromDB(id);
     return product;
   }

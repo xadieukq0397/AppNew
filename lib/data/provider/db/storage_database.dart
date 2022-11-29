@@ -27,21 +27,24 @@ class StorageDatabase {
   Future _createDB(Database db, int version) async {
     final name = 'TEXT NOT NULL';
     final productName = 'TEXT NOT NULL';
+    final commentsCount = 'INTERGER NOT NULL';
+    final createdAt = 'TEXT NOT NULL';
+    final code = 'TEXT NOT NULL';
     final type = 'TEXT NOT NULL';
     final slug = 'TEXT NOT NULL';
     final path = 'TEXT NOT NULL';
-    final id = 'TEXT PRIMARY KEY';
+    final id = 'INTERGER PRIMARY KEY';
     final parent_id = 'TEXT NOT NULL';
     final userId = 'TEXT NOT NULL';
     final totalPrice = 'INTERGER NOT NULL';
     final transportFee = 'INTERGER NOT NULL';
     final time = 'TEXT NOT NULL';
-    final image = 'TEXT NOT NULL';
+    final imageUrls = 'TEXT NOT NULL';
     final productImage = 'TEXT NOT NULL';
-    final decription = 'TEXT NOT NULL';
     final unitPrice = 'INTERGER NOT NULL';
     final price = 'INTERGER NOT NULL';
-    final inventory = 'INTERGER NOT NULL';
+    final stock = 'INTERGER NOT NULL';
+    final updatedAt = 'TEXT NOT NULL';
     final productId = 'TEXT NOT NULL';
     final orderId = 'TEXT NOT NULL';
     final quantity = 'INTERGER NOT NULL';
@@ -81,11 +84,15 @@ CREATE TABLE $tableWard(
     await db.execute('''
 CREATE TABLE $tableProduct(
   ${ProductField.id} $id,
+  ${ProductField.code} $code,
+  ${ProductField.commentsCount} $commentsCount,
+  ${ProductField.createdAt} $createdAt,
+  ${ProductField.imageUrls} $imageUrls,
   ${ProductField.name} $name,
-  ${ProductField.image} $image,
-  ${ProductField.decription} $decription,
   ${ProductField.price} $price,
-  ${ProductField.inventory} $inventory,
+  ${ProductField.slug} $slug,
+  ${ProductField.stock} $stock,
+  ${ProductField.updatedAt} $updatedAt,
   ${ProductField.weight} $weight
   )''');
     await db.execute('''
@@ -297,7 +304,7 @@ CREATE TABLE $tableOrder(
     }
   }
 
-  Future<Product?> readProductByIDFromDB(String? id) async {
+  Future<Product?> readProductByIDFromDB(int? id) async {
     final db = await instance.database;
     final maps = await db.query(
       tableProduct,
