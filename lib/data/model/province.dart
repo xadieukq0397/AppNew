@@ -1,8 +1,8 @@
 final String tableProvinces = 'provinces';
 
 class ProvinceField {
-  static final List<String> values = [id, name, slug, type];
-  static final String id = 'id';
+  static final List<String> values = [provinceId, name, slug, type];
+  static final String provinceId = 'provinceId';
   static final String name = 'name';
   static final String slug = 'slug';
   static final String type = 'type';
@@ -13,25 +13,25 @@ class Province {
     required this.name,
     required this.slug,
     required this.type,
-    required this.id,
+    required this.provinceId,
   });
   final String? name;
   final String? slug;
   final String? type;
-  final String? id;
+  final String? provinceId;
 
   static Province fromJson(Map<String, dynamic> json) => Province(
         name: json["name"],
         slug: json["slug"],
         type: typeValues.map[json["type"]]!,
-        id: json["code"] ?? json["id"],
+        provinceId: json["code"] ?? json["provinceId"],
       );
 
   Map<String, dynamic> toJson() => {
         ProvinceField.name: name,
         ProvinceField.slug: slug,
         ProvinceField.type: typeValues.reverse[type],
-        ProvinceField.id: id,
+        ProvinceField.provinceId: provinceId,
       };
 }
 

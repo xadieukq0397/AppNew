@@ -98,7 +98,7 @@ class OrderController extends GetxController {
     int? maxId;
     Order order = Order(
       id: Get.find<CartController>().orderId,
-      userId: '1',
+      userId: 1,
       totalPrice:
           Get.find<CartController>().subTotalPrice + _transportFee!.fee!.fee!,
       transportFee: _transportFee!.fee!.fee!,
@@ -126,7 +126,7 @@ class OrderController extends GetxController {
         await Get.find<CartController>().readAllCartIsNotExitedFromDB();
     if (listCarts != null) {
       for (var cart in listCarts) {
-        cart.isExisted = 'true';
+        cart.isExisted = true;
         await Get.find<CartController>().updateCartToDB(cart);
       }
     }
@@ -142,7 +142,7 @@ class OrderController extends GetxController {
         _orders.add(order);
         List<Cart>? listCart = await Get.find<CartController>()
             .readAllCartByOrderIdFromDB(order.id!);
-        _mapListCart.putIfAbsent(int.parse(order.id!), () => listCart);
+        _mapListCart.putIfAbsent(order.id!, () => listCart);
       }
       getProductFromOrder();
       _isLoading = false;

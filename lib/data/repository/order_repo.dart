@@ -26,7 +26,7 @@ class OrderRepo {
     }
   }
 
-  Future<Order?> readOrderByIDFromDB({String? id}) async {
+  Future<Order?> readOrderByIDFromDB({int? id}) async {
     Order? order = await StorageDatabase.instance.readOrderByIDFromDB(id);
     return order;
   }

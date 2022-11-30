@@ -14,7 +14,7 @@ class CartRepo {
     }
   }
 
-  Future<Cart?> readCartByIDFromDB({String? id}) async {
+  Future<Cart?> readCartByIDFromDB({int? id}) async {
     Cart? cart = await StorageDatabase.instance.readCartByIDFromDB(id);
     return cart;
   }
@@ -31,7 +31,7 @@ class CartRepo {
     return carts;
   }
 
-  Future<List<Cart>?> readAllCartByOrderIdFromDB(String orderId) async {
+  Future<List<Cart>?> readAllCartByOrderIdFromDB(int orderId) async {
     List<Cart>? carts;
     carts = await StorageDatabase.instance.readAllCartByOrderIDFromDB(orderId);
     return carts;
@@ -41,7 +41,7 @@ class CartRepo {
     await StorageDatabase.instance.updateCartToDB(cart);
   }
 
-  Future<void> deleteCartByIdFromDb(String id) async {
+  Future<void> deleteCartByIdFromDb(int id) async {
     await StorageDatabase.instance.deleteCartByIdFromDb(id);
   }
 }

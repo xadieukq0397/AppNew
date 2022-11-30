@@ -44,18 +44,17 @@ class Product {
     required this.updatedAt,
     required this.weight,
   });
-
   final List<dynamic>? categories;
   final String? code;
   final int? commentsCount;
-  final String? createdAt;
+  final DateTime? createdAt;
   final int id;
   final List<dynamic>? imageUrls;
   final String? name;
   final int? price;
   final String? slug;
   final int? stock;
-  final String? updatedAt;
+  final DateTime? updatedAt;
   final int? weight;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -64,7 +63,12 @@ class Product {
             : [],
         code: json["code"],
         commentsCount: json["comments_count"],
-        createdAt: json["created_at"],
+        createdAt: json["created_at"] != null
+            ? json["created_at"] is String
+                ? DateTime.parse(json["created_at"])
+                : DateTime.fromMillisecondsSinceEpoch(json["created_at"],
+                    isUtc: true)
+            : null,
         id: json["id"],
         imageUrls: json["image_urls"] != null
             ? json["image_urls"] is String
@@ -77,14 +81,19 @@ class Product {
         price: json["price"],
         slug: json["slug"],
         stock: json["stock"],
-        updatedAt: json["updated_at"],
+        updatedAt: json["updated_at"] != null
+            ? json["updated_at"] is String
+                ? DateTime.parse(json["updated_at"])
+                : DateTime.fromMillisecondsSinceEpoch(json["updated_at"],
+                    isUtc: true)
+            : null,
         weight: json["weight"],
       );
 
   Map<String, dynamic> toJson() => {
         "code": code ?? "",
         "comments_count": commentsCount ?? 0,
-        "created_at": createdAt ?? "",
+        "created_at": createdAt != null ? createdAt!.millisecondsSinceEpoch : 0,
         "id": id,
         "image_urls": imageUrls != null
             ? imageUrls!.isEmpty
@@ -95,7 +104,7 @@ class Product {
         "price": price ?? 0,
         "slug": slug ?? "",
         "stock": stock ?? 0,
-        "updated_at": updatedAt ?? "",
+        "updated_at": updatedAt != null ? updatedAt!.millisecondsSinceEpoch : 0,
         "weight": weight ?? 0,
       };
 }

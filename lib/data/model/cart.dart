@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 final String tableCart = 'carts';
 
 class CartField {
@@ -22,14 +24,14 @@ class CartField {
 }
 
 class Cart {
-  final String? id;
+  final int? id;
   final int? productId;
-  final String? orderId;
+  final int? orderId;
   final String? productName;
-  final String? productImage;
+  final List<dynamic>? productImage;
   final int? unitPrice;
   int quantity;
-  String? isExisted;
+  bool? isExisted;
 
   Cart({
     required this.id,
@@ -47,19 +49,26 @@ class Cart {
         productId: json['productId'],
         orderId: json['orderId'],
         productName: json['productName'],
-        productImage: json['productImage'],
+        productImage: json["productImage"]!.isNotEmpty
+            ? List<dynamic>.from(jsonDecode(json["productImage"])
+                .cast<String>()
+                .toList()
+                .map((x) => x))
+            : [],
         unitPrice: json['unitPrice'],
         quantity: json['quantity'],
-        isExisted: json['isExisted'],
+        isExisted: json['isExisted'] == 1 ? true : false,
       );
   Map<String, dynamic> toJson() => {
         'id': id,
         'productId': productId,
         'orderId': orderId,
-        'productName': productName,
-        'productImage': productImage,
+        'productName': productName ?? "",
+        'productImage': productImage!.isNotEmpty
+            ? List<dynamic>.from(productImage!.map((x) => x)).toString()
+            : "",
         'unitPrice': unitPrice,
         'quantity': quantity,
-        'isExisted': isExisted,
+        'isExisted': isExisted == true ? 1 : 0,
       };
 }

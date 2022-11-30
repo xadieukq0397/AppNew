@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:responsive_login_ui/data/model/product.dart';
 import 'package:responsive_login_ui/data/repository/product_repo.dart';
@@ -16,7 +15,7 @@ class ProductController extends GetxController {
   Future<List<Product>> getProducts() async {
     List<Product> listProducts = [];
     Response response = await productRepo
-        .getProducts(pageQuery: {"page": "2", "page_size": "10"});
+        .getProducts(pageQuery: {"page": "1", "page_size": "20"});
     if (response.statusCode == 200) {
       Map<String, dynamic> result =
           Map<String, dynamic>.from(jsonDecode(jsonEncode(response.body)));
@@ -56,6 +55,18 @@ class ProductController extends GetxController {
     _isLoading = true;
     List<Product>? listProducts = await productRepo.readAllProductFromDB();
     _products = [];
+    for (var product in listProducts!) {
+      _products.add(product);
+    }
+    _isLoading = false;
+    update();
+  }
+
+  Future<void> noFilterProduct() async {
+    _isLoading = true;
+    List<Product>? listProducts = await productRepo.readAllProductFromDB();
+    _products = [];
+
     for (var product in listProducts!) {
       _products.add(product);
     }

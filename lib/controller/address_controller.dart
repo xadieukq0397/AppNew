@@ -126,7 +126,7 @@ class AddressController extends GetxController {
         Province? provinceByname =
             await addressRepo.readProvinceByNameFromDB(query);
         if (provinceByname != null) {
-          _provinceID = provinceByname.id;
+          _provinceID = provinceByname.provinceId;
           _provinceType = provinceByname.type;
           await createDistrictToDB();
         } else {
@@ -157,7 +157,7 @@ class AddressController extends GetxController {
           District? districtByname =
               await addressRepo.readDistrictByNameFromDB(query);
           if (districtByname != null) {
-            _districtID = districtByname.id;
+            _districtID = districtByname.districtId;
             _districtType = districtByname.type;
             await createWardToDB();
           } else {

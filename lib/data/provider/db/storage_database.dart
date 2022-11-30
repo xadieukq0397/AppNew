@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../../model/cart.dart';
+import '../../model/category.dart';
 import '../../model/district.dart';
 import '../../model/order.dart';
 import '../../model/product.dart';
@@ -28,14 +29,14 @@ class StorageDatabase {
     final name = 'TEXT NOT NULL';
     final productName = 'TEXT NOT NULL';
     final commentsCount = 'INTERGER NOT NULL';
-    final createdAt = 'TEXT NOT NULL';
+    final createdAt = 'INTERGER NOT NULL';
     final code = 'TEXT NOT NULL';
     final type = 'TEXT NOT NULL';
     final slug = 'TEXT NOT NULL';
     final path = 'TEXT NOT NULL';
     final id = 'INTERGER PRIMARY KEY';
     final parent_id = 'TEXT NOT NULL';
-    final userId = 'TEXT NOT NULL';
+    final userId = 'INTERGER NOT NULL';
     final totalPrice = 'INTERGER NOT NULL';
     final transportFee = 'INTERGER NOT NULL';
     final time = 'TEXT NOT NULL';
@@ -44,9 +45,9 @@ class StorageDatabase {
     final unitPrice = 'INTERGER NOT NULL';
     final price = 'INTERGER NOT NULL';
     final stock = 'INTERGER NOT NULL';
-    final updatedAt = 'TEXT NOT NULL';
-    final productId = 'TEXT NOT NULL';
-    final orderId = 'TEXT NOT NULL';
+    final updatedAt = 'INTERGER NOT NULL';
+    final productId = 'INTERGER NOT NULL';
+    final orderId = 'INTERGER NOT NULL';
     final quantity = 'INTERGER NOT NULL';
     final weight = 'INTERGER NOT NULL';
     final customerName = 'TEXT NOT NULL';
@@ -55,17 +56,20 @@ class StorageDatabase {
     final transportCode = 'INTERGER NOT NULL';
     final statusOrder = 'TEXT NOT NULL';
     final isExisted = 'TEXT NOT NULL';
+    final provinceId = 'TEXT NOT NULL';
+    final districtId = 'TEXT NOT NULL';
+    final wardId = 'TEXT NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableProvinces(
-  ${ProvinceField.id} $id,
+  ${ProvinceField.provinceId} $provinceId,
   ${ProvinceField.name} $name,
   ${ProvinceField.slug} $slug,
   ${ProvinceField.type} $type
   )''');
     await db.execute('''
 CREATE TABLE $tableDistrict(
-  ${DistrictField.id} $id,
+  ${DistrictField.districtId} $districtId,
   ${DistrictField.name} $name,
   ${DistrictField.type} $type,
   ${DistrictField.slug} $slug,
@@ -74,7 +78,7 @@ CREATE TABLE $tableDistrict(
   )''');
     await db.execute('''
 CREATE TABLE $tableWard(
-  ${WardField.id} $id,
+  ${WardField.wardId} $wardId,
   ${WardField.name} $name,
   ${WardField.type} $type,
   ${WardField.slug} $slug,
@@ -94,6 +98,11 @@ CREATE TABLE $tableProduct(
   ${ProductField.stock} $stock,
   ${ProductField.updatedAt} $updatedAt,
   ${ProductField.weight} $weight
+  )''');
+    await db.execute('''
+CREATE TABLE $tableCategory(
+  ${CategoryField.id} $id,
+  ${CategoryField.name} $name
   )''');
     await db.execute('''
 CREATE TABLE $tableCart(
@@ -137,7 +146,7 @@ CREATE TABLE $tableOrder(
     final maps = await db.query(
       tableProvinces,
       columns: ProvinceField.values,
-      where: '${ProvinceField.id} = ?',
+      where: '${ProvinceField.provinceId} = ?',
       whereArgs: [id],
     );
     if (maps.isNotEmpty) {
@@ -188,7 +197,7 @@ CREATE TABLE $tableOrder(
     final maps = await db.query(
       tableDistrict,
       columns: DistrictField.values,
-      where: '${DistrictField.id} = ?',
+      where: '${DistrictField.districtId} = ?',
       whereArgs: [id],
     );
     if (maps.isNotEmpty) {
@@ -245,7 +254,7 @@ CREATE TABLE $tableOrder(
     final maps = await db.query(
       tableWard,
       columns: WardField.values,
-      where: '${WardField.id} = ?',
+      where: '${WardField.wardId} = ?',
       whereArgs: [id],
     );
     if (maps.isNotEmpty) {
@@ -346,7 +355,7 @@ CREATE TABLE $tableOrder(
       tableCart,
       columns: CartField.values,
       where: '${CartField.isExisted} = ?',
-      whereArgs: ['false'],
+      whereArgs: [0],
     );
     if (results.isNotEmpty) {
       return results.map((json) => Cart.fromJson(json)).toList();
@@ -355,7 +364,7 @@ CREATE TABLE $tableOrder(
     }
   }
 
-  Future<Cart?> readCartByIDFromDB(String? id) async {
+  Future<Cart?> readCartByIDFromDB(int? id) async {
     final db = await instance.database;
     final maps = await db.query(
       tableCart,
@@ -370,7 +379,7 @@ CREATE TABLE $tableOrder(
     }
   }
 
-  Future<List<Cart>?> readAllCartByOrderIDFromDB(String? orderId) async {
+  Future<List<Cart>?> readAllCartByOrderIDFromDB(int? orderId) async {
     final db = await instance.database;
     final maps = await db.query(
       tableCart,
@@ -395,7 +404,7 @@ CREATE TABLE $tableOrder(
     );
   }
 
-  Future<void> deleteCartByIdFromDb(String id) async {
+  Future<void> deleteCartByIdFromDb(int id) async {
     final db = await instance.database;
     await db.delete(
       tableCart,
@@ -425,7 +434,7 @@ CREATE TABLE $tableOrder(
     }
   }
 
-  Future<Order?> readOrderByIDFromDB(String? id) async {
+  Future<Order?> readOrderByIDFromDB(int? id) async {
     final db = await instance.database;
     final maps = await db.query(
       tableOrder,
@@ -440,7 +449,7 @@ CREATE TABLE $tableOrder(
     }
   }
 
-  Future<List<Order>?> readAllOrderByUserIDFromDB(String? userId) async {
+  Future<List<Order>?> readAllOrderByUserIDFromDB(int? userId) async {
     final db = await instance.database;
     final maps = await db.query(
       tableOrder,
