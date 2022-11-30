@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<ProductController>().readAllProductFromDB();
+    preLoad();
     var size = Get.size;
     return Scaffold(
       body: Column(
@@ -197,4 +197,9 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> preLoad() async {
+  await Get.find<ProductController>().getProducts();
+  await Get.find<ProductController>().readAllProductFromDB();
 }
