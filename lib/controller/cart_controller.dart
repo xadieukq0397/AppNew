@@ -23,8 +23,8 @@ class CartController extends GetxController {
   int _totalWeight = 0;
   int get totalWeight => _totalWeight;
 
-  String? _orderId;
-  String? get orderId => _orderId;
+  int? _orderId;
+  int? get orderId => _orderId;
 
   CartController({
     required this.cartRepo,
@@ -35,7 +35,7 @@ class CartController extends GetxController {
     int? maxId;
     for (int i = 0; i < _carts!.length; i++) {
       if (_carts![i].productId == product.id) {
-        if (_carts![i].quantity == product.inventory) {
+        if (_carts![i].quantity == product.stock) {
           Get.snackbar(
             "Can't add",
             "Product is not enough",
@@ -55,20 +55,20 @@ class CartController extends GetxController {
     await getOrderIdFromDB();
     List<Cart>? listCarts = await cartRepo.readAllCartFromDB();
     if (listCarts != null) {
-      listCarts.sort((a, b) => int.parse(a.id!) - int.parse(b.id!));
-      maxId = int.parse(listCarts.last.id!);
+      listCarts.sort((a, b) => a.id! - b.id!);
+      maxId = listCarts.last.id!;
     } else {
       listCarts = [];
     }
     Cart cart = Cart(
-      id: listCarts.isEmpty ? '${listCarts.length + 1}' : '${maxId! + 1}',
+      id: listCarts.isEmpty ? (listCarts.length + 1) : maxId! + 1,
       productId: product.id,
       orderId: _orderId,
       productName: product.name,
-      productImage: product.image,
+      productImage: product.imageUrls!.isNotEmpty ? product.imageUrls : [],
       unitPrice: product.price,
       quantity: 1,
-      isExisted: 'false',
+      isExisted: false,
     );
     _carts!.add(cart);
     if (carts!.isNotEmpty) {
@@ -81,7 +81,7 @@ class CartController extends GetxController {
     return true;
   }
 
-  Future<List<Cart>?> readAllCartByOrderIdFromDB(String orderId) async {
+  Future<List<Cart>?> readAllCartByOrderIdFromDB(int orderId) async {
     return await cartRepo.readAllCartByOrderIdFromDB(orderId);
   }
 
@@ -124,7 +124,7 @@ class CartController extends GetxController {
   Future<void> increment(int index) async {
     Product? product = await Get.find<ProductController>()
         .readProductByIdFromDB(_carts![index].productId);
-    if (_carts![index].quantity == product!.inventory) {
+    if (_carts![index].quantity == product!.stock) {
       Get.snackbar(
         "Can't add",
         "Product is not enough",
@@ -160,11 +160,11 @@ class CartController extends GetxController {
     List<Order>? listOrders =
         await Get.find<OrderController>().readAllOrderFromDB();
     if (listOrders != null) {
-      listOrders.sort((a, b) => int.parse(a.id!) - int.parse(b.id!));
-      _orderId = "${int.parse(listOrders.last.id!) + 1}";
+      listOrders.sort((a, b) => a.id! - b.id!);
+      _orderId = listOrders.last.id! + 1;
     } else {
       listOrders = [];
-      _orderId = "${listOrders.length + 1}";
+      _orderId = listOrders.length + 1;
     }
     update();
   }

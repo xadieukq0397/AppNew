@@ -40,11 +40,9 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 onChanged: (value) async {
-                  if (productController.isFilter) {
-                    await Get.find<ProductController>().filterProduct(value);
-                  }
+                  await Get.find<ProductController>().filterProduct(value);
                   if (value.isEmpty) {
-                    await productController.readAllProductFromDB();
+                    await productController.noFilterProduct();
                   }
                 },
               ),
@@ -65,118 +63,140 @@ class HomeView extends StatelessWidget {
                               child: ListView.builder(
                                 itemCount: productController.products.length,
                                 itemBuilder: (context, index) {
-                                  return SwipeActionCell(
-                                    key: ObjectKey(
-                                      productController.products[index],
-                                    ),
-                                    trailingActions: <SwipeAction>[
-                                      SwipeAction(
-                                        performsFirstActionWithFullSwipe: true,
-                                        widthSpace: 160,
-                                        color: Colors.white,
-                                        title: AppLocalizations.of(context)!
-                                            .addToCartButton,
-                                        style: const TextStyle(
-                                            color: Colors.green, fontSize: 14),
-                                        onTap:
-                                            (CompletionHandler handler) async {
-                                          bool isAdd =
-                                              await Get.find<CartController>()
-                                                  .addToCart(productController
-                                                      .products[index]);
-                                          if (isAdd) {
-                                            await handler(true);
-                                            productController
-                                                .removeProduct(index);
-                                          }
-                                        },
+                                  return Container(
+                                    margin: const EdgeInsets.only(bottom: 20),
+                                    child: SwipeActionCell(
+                                      key: ObjectKey(
+                                        productController.products[index],
                                       ),
-                                    ],
-                                    child: Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 120,
-                                          height: 120,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                            ),
-                                            child: Image.network(
-                                                productController
-                                                    .products[index].image!),
-                                          ),
+                                      trailingActions: <SwipeAction>[
+                                        SwipeAction(
+                                          performsFirstActionWithFullSwipe:
+                                              true,
+                                          widthSpace: 160,
+                                          color: Colors.white,
+                                          title: AppLocalizations.of(context)!
+                                              .addToCartButton,
+                                          style: const TextStyle(
+                                              color: Colors.green,
+                                              fontSize: 14),
+                                          onTap: (CompletionHandler
+                                              handler) async {
+                                            bool isAdd =
+                                                await Get.find<CartController>()
+                                                    .addToCart(productController
+                                                        .products[index]);
+                                            if (isAdd) {
+                                              await handler(true);
+                                              productController
+                                                  .removeProduct(index);
+                                            }
+                                          },
                                         ),
-                                        Expanded(
-                                          child: Container(
+                                      ],
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 120,
                                             height: 120,
-                                            color: Colors.white,
-                                            child: Container(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10, right: 10, top: 10),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    height: 40,
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                      bottom: 6,
-                                                    ),
-                                                    child: Text(
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                bottomLeft: Radius.circular(20),
+                                              ),
+                                              child: productController
+                                                      .products[index]
+                                                      .imageUrls!
+                                                      .isEmpty
+                                                  ? Image.network(
+                                                      'https://previews.123rf.com/images/latkun/latkun1712/latkun171200130/92172856-empty-transparent-background-seamless-pattern.jpg?fj=1',
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                  : Image.network(
                                                       productController
                                                           .products[index]
-                                                          .name!,
-                                                      textDirection:
-                                                          TextDirection.ltr,
-                                                      style:
-                                                          kProductStyle(size),
+                                                          .imageUrls![0]!,
+                                                      fit: BoxFit.cover,
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                      height:
-                                                          size.height * 0.05),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        productController
-                                                            .products[index]
-                                                            .price
-                                                            .toString(),
-                                                        style: TextStyle(
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              height: 120,
+                                              color: Colors.white,
+                                              child: Container(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10,
+                                                    right: 10,
+                                                    top: 10),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 40,
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        bottom: 6,
+                                                      ),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                          productController
+                                                              .products[index]
+                                                              .name!,
+                                                          style: kProductStyle(
+                                                              size),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                        height:
+                                                            size.height * 0.05),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          productController
+                                                              .products[index]
+                                                              .price
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  kProductStyle(
+                                                                          size)
+                                                                      .fontSize,
+                                                              color:
+                                                                  Colors.red),
+                                                        ),
+                                                        Text(
+                                                          AppLocalizations.of(
+                                                                      context)!
+                                                                  .textInventory +
+                                                              productController
+                                                                  .products[
+                                                                      index]
+                                                                  .stock
+                                                                  .toString(),
+                                                          style: TextStyle(
                                                             fontSize:
                                                                 kProductStyle(
                                                                         size)
                                                                     .fontSize,
-                                                            color: Colors.red),
-                                                      ),
-                                                      Text(
-                                                        AppLocalizations.of(
-                                                                    context)!
-                                                                .textInventory +
-                                                            productController
-                                                                .products[index]
-                                                                .inventory
-                                                                .toString(),
-                                                        style: TextStyle(
-                                                          fontSize:
-                                                              kProductStyle(
-                                                                      size)
-                                                                  .fontSize,
-                                                          color: Colors.grey,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
+                                                            color: Colors.grey,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },

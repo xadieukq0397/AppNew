@@ -91,7 +91,7 @@ class SelectAddress extends StatelessWidget {
               onSuggestionSelected: (Province? suggestion) async {
                 final province = suggestion!;
                 provinceController.text = province.name!;
-                addressController.provinceID = province.id;
+                addressController.provinceID = province.provinceId;
                 addressController.provinceType = province.type;
                 addressController.isEnableDistrictText = true;
                 addressController.createDistrictToDB();
@@ -165,7 +165,7 @@ class SelectAddress extends StatelessWidget {
                 onSuggestionSelected: (District? suggestion) async {
                   final district = suggestion!;
                   districtController.text = district.name!;
-                  addressController.districtID = district.id;
+                  addressController.districtID = district.districtId;
                   addressController.districtType = district.type;
                   addressController.isEnableWardText = true;
                   addressController.createWardToDB();
