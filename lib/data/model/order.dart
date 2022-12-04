@@ -26,8 +26,8 @@ class OrderField {
 }
 
 class Order {
-  final String? id;
-  final String? userId;
+  final int? id;
+  final int? userId;
   final int? totalPrice;
   final int? transportFee;
   final String? time;

@@ -7,7 +7,7 @@ import 'package:responsive_login_ui/routes/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'bindings/start_bindings.dart' as start_bindings;
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   start_bindings.dependencies();
   runApp(const MyApp());

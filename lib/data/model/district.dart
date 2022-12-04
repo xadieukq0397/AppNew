@@ -1,12 +1,19 @@
 final String tableDistrict = 'district';
 
 class DistrictField {
-  static final List<String> values = [name, type, slug, path, id, parent_id];
+  static final List<String> values = [
+    name,
+    type,
+    slug,
+    path,
+    districtId,
+    parent_id
+  ];
   static final String name = 'name';
   static final String type = 'type';
   static final String slug = 'slug';
   static final String path = 'path';
-  static final String id = 'id';
+  static final String districtId = 'districtId';
   static final String parent_id = 'parent_id';
 }
 
@@ -16,7 +23,7 @@ class District {
     required this.type,
     required this.slug,
     required this.path,
-    required this.id,
+    required this.districtId,
     required this.parent_id,
   });
 
@@ -24,7 +31,7 @@ class District {
   final String? type;
   final String? slug;
   final String? path;
-  final String? id;
+  final String? districtId;
   final String? parent_id;
 
   static District fromJson(Map<String, dynamic> json) => District(
@@ -32,7 +39,7 @@ class District {
         type: typeValues.map[json["type"]],
         slug: json["slug"],
         path: json["path"],
-        id: json["code"] ?? json["id"],
+        districtId: json["code"] ?? json["districtId"],
         parent_id: json["parent_code"] ?? json["parent_id"],
       );
 
@@ -41,7 +48,7 @@ class District {
         "type": typeValues.reverse[type],
         "slug": slug,
         "path": path,
-        "id": id,
+        "districtId": districtId,
         "parent_id": parent_id,
       };
 }

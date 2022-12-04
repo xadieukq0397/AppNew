@@ -172,12 +172,20 @@ class OrderDetail extends StatelessWidget {
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(100),
                                 ),
-                                child: Image.network(
-                                  orderController
-                                      .listValuesMapOrder[pageId]![index]
-                                      .productImage!,
-                                  fit: BoxFit.cover,
-                                ),
+                                child: orderController
+                                        .listValuesMapOrder[pageId]![index]
+                                        .productImage!
+                                        .isEmpty
+                                    ? Image.network(
+                                        'https://previews.123rf.com/images/latkun/latkun1712/latkun171200130/92172856-empty-transparent-background-seamless-pattern.jpg?fj=1',
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.network(
+                                        orderController
+                                            .listValuesMapOrder[pageId]![index]
+                                            .productImage![0],
+                                        fit: BoxFit.cover,
+                                      ),
                               ),
                             ),
                           ),

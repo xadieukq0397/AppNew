@@ -1,12 +1,19 @@
 final String tableWard = 'ward';
 
 class WardField {
-  static final List<String> values = [name, type, slug, path, id, parent_id];
+  static final List<String> values = [
+    name,
+    type,
+    slug,
+    path,
+    wardId,
+    parent_id
+  ];
   static final String name = 'name';
   static final String type = 'type';
   static final String slug = 'slug';
   static final String path = 'path';
-  static final String id = 'id';
+  static final String wardId = 'wardId';
   static final String parent_id = 'parent_id';
 }
 
@@ -16,7 +23,7 @@ class Ward {
     required this.type,
     required this.slug,
     required this.path,
-    required this.id,
+    required this.wardId,
     required this.parent_id,
   });
 
@@ -24,7 +31,7 @@ class Ward {
   final String? type;
   final String? slug;
   final String? path;
-  final String? id;
+  final String? wardId;
   final String? parent_id;
 
   static Ward fromJson(Map<String, dynamic> json) => Ward(
@@ -32,7 +39,7 @@ class Ward {
         type: typeValues.map[json["type"]],
         slug: json["slug"],
         path: json["path"],
-        id: json["code"] ?? json["id"],
+        wardId: json["code"] ?? json["wardId"],
         parent_id: json["parent_code"] ?? json["parent_id"],
       );
 
@@ -41,7 +48,7 @@ class Ward {
         "type": typeValues.reverse[type],
         "slug": slug,
         "path": path,
-        "id": id,
+        "wardId": wardId,
         "parent_id": parent_id,
       };
 }
